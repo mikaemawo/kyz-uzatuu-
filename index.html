@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кыз Узатуу</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#f7f1e7;
+  color:#594b3c;
+  font-family:Georgia,serif;
+  text-align:center;
+}
+
+section{
+  padding:75px 24px;
+  position:relative;
+}
+
+.ornament{
+  font-size:26px;
+  color:#b69a70;
+  letter-spacing:8px;
+  margin-bottom:25px;
+}
+
+h1,h2,p{margin-top:0}
+
+h1{
+  font-size:46px;
+  font-weight:400;
+  margin-bottom:8px;
+}
+
+h2{
+  font-size:27px;
+  font-weight:400;
+  letter-spacing:2px;
+}
+
+p{
+  font-size:17px;
+  line-height:1.8;
+}
+
+/* COVER */
+
+.cover{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background:
+    linear-gradient(#eee7dcaa,#f7f1e7),
+    linear-gradient(160deg,#e7ddd0,#faf6ef);
+}
+
+.small-title{
+  letter-spacing:4px;
+  font-size:13px;
+  margin-bottom:28px;
+}
+
+.yurt{
+  width:280px;
+  height:190px;
+  background:#fffaf1;
+  border:2px solid #cbb794;
+  border-radius:50% 50% 15px 15px;
+  position:relative;
+  box-shadow:0 20px 50px rgba(80,60,40,.10);
+  margin:15px auto 35px;
+}
+
+.yurt:before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:65px;
+  border-top:2px solid #cbb794;
+  border-radius:50%;
+  top:25px;
+  left:48px;
+}
+
+.door-frame{
+  position:absolute;
+  width:90px;
+  height:115px;
+  bottom:0;
+  left:94px;
+  border:3px solid #b79a6d;
+  overflow:hidden;
+  background:#dcc9aa;
+}
+
+.door{
+  position:absolute;
+  top:0;
+  width:50%;
+  height:100%;
+  background:#bda27b;
+  transition:transform 1.3s ease;
+  z-index:2;
+}
+
+.left{left:0;transform-origin:left}
+.right{right:0;transform-origin:right}
+
+.yurt.open .left{transform:perspective(300px) rotateY(-105deg)}
+.yurt.open .right{transform:perspective(300px) rotateY(105deg)}
+
+.girl{
+  position:absolute;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:44px;
+  opacity:0;
+  transition:opacity 1s .5s;
+}
+
+.yurt.open .girl{opacity:1}
+
+.open-btn{
+  border:1px solid #a98e67;
+  background:transparent;
+  padding:14px 35px;
+  border-radius:30px;
+  font-family:inherit;
+  letter-spacing:3px;
+  color:#594b3c;
+  font-size:13px;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(15px);
+  transition:1s;
+}
+
+.reveal.show{
+  opacity:1;
+  transform:none;
+}
+
+/* DATE */
+
+.date{
+  font-size:38px;
+  letter-spacing:5px;
+  margin:20px 0;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  max-width:500px;
+  margin:35px auto 0;
+}
+
+.time{
+  border-top:1px solid #c7b18c;
+  padding-top:18px;
+}
+
+.number{
+  font-size:30px;
+}
+
+.label{
+  font-size:11px;
+  margin-top:8px;
+}
+
+/* BUTTON */
+
+.map-btn,.submit-btn{
+  display:inline-block;
+  border:1px solid #a98e67;
+  border-radius:30px;
+  padding:14px 27px;
+  background:transparent;
+  color:#594b3c;
+  text-decoration:none;
+  font-family:inherit;
+}
+
+/* OWNERS */
+
+.owners{
+  background:#eee5d8;
+}
+
+.names{
+  font-size:31px;
+  font-style:italic;
+  margin-top:20px;
+}
+
+/* DRESS */
+
+.colors{
+  display:flex;
+  justify-content:center;
+  gap:13px;
+  margin-top:30px;
+}
+
+.color{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid #c7bba9;
+}
+
+.c1{background:#f4eee4}
+.c2{background:#dfd0bd}
+.c3{background:#c5ad94}
+.c4{background:#987765}
+.c5{background:#684a45}
+
+/* GALLERY */
+
+.gallery-wrap{
+  overflow:hidden;
+  max-width:350px;
+  margin:auto;
+}
+
+.gallery{
+  display:flex;
+  transition:.5s ease;
+}
+
+.photo{
+  min-width:100%;
+  height:440px;
+  background:#e6dac8;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:70px;
+  border:10px solid #fffaf2;
+}
+
+.gallery-buttons{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:35px;
+}
+
+.arrow{
+  border:none;
+  background:none;
+  font-size:30px;
+  color:#7d674e;
+}
+
+/* RSVP */
+
+form{
+  max-width:390px;
+  margin:30px auto 0;
+}
+
+input,select{
+  width:100%;
+  padding:16px;
+  margin-bottom:12px;
+  border:none;
+  border-bottom:1px solid #bba888;
+  background:transparent;
+  font-size:16px;
+}
+
+.submit-btn{
+  margin-top:15px;
+}
+
+/* END */
+
+.end{
+  padding:110px 25px;
+  background:#e9dfd1;
+}
+
+@media(max-width:420px){
+  h1{font-size:40px}
+  .countdown{gap:4px}
+  .number{font-size:25px}
+}
+</style>
+</head>
+
+<body>
+
+<section class="cover">
+  <div class="small-title">СИЗГЕ ЧАКЫРУУ БАР</div>
+
+  <div class="yurt" id="yurt">
+    <div class="door-frame">
+      <div class="girl">♡</div>
+      <div class="door left"></div>
+      <div class="door right"></div>
+    </div>
+  </div>
+
+  <button class="open-btn" id="openYurt">БАСЫҢЫЗ</button>
+
+  <div class="reveal" id="coverText">
+    <p style="margin-top:35px;letter-spacing:4px;">КЫЗ УЗАТУУ</p>
+    <h1>Айлина</h1>
+    <p>↓</p>
+  </div>
+</section>
+
+<section>
+  <div class="ornament">◇ ❦ ◇</div>
+  <h2>Урматтуу коноктор!</h2>
+  <p>
+    Сиздерди кызыбыз Айлинанын<br>
+    кыз узатуу тоюна арналган<br>
+    ак дасторконубуздун кадырлуу<br>
+    коногу болууга чакырабыз.
+  </p>
+</section>
+
+<section>
+  <div class="ornament">❦</div>
+  <h2>ТОЙ КҮНҮ</h2>
+  <div class="date">15 · 08 · 2027</div>
+  <p>Саат 17:00</p>
+</section>
+
+<section>
+  <h2>ТОЙГО ЧЕЙИН</h2>
+
+  <div class="countdown">
+    <div class="time"><div class="number" id="days">00</div><div class="label">КҮН</div></div>
+    <div class="time"><div class="number" id="hours">00</div><div class="label">СААТ</div></div>
+    <div class="time"><div class="number" id="minutes">00</div><div class="label">МҮНӨТ</div></div>
+    <div class="time"><div class="number" id="seconds">00</div><div class="label">СЕКУНД</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="ornament">◇</div>
+  <h2>ДАРЕК</h2>
+  <p>
+    «Ала-Тоо» рестораны<br>
+    Бишкек шаары
+  </p>
+
+  <a class="map-btn" href="#" target="_blank">КАРТАНЫ АЧУУ</a>
+</section>
+
+<section class="owners">
+  <div class="ornament">❦</div>
+  <h2>ТОЙДУН ЭЭЛЕРИ</h2>
+  <div class="names">Азамат & Айгүл</div>
+</section>
+
+<section>
+  <h2>DRESS CODE</h2>
+  <p>Сиздерди төмөнкү түстөрдө<br>көрүүгө кубанычта болобуз.</p>
+
+  <div class="colors">
+    <div class="color c1"></div>
+    <div class="color c2"></div>
+    <div class="color c3"></div>
+    <div class="color c4"></div>
+    <div class="color c5"></div>
+  </div>
+</section>
+
+<section>
+  <div class="ornament">❦</div>
+  <h2>БИЗДИН ЭСТЕЛИКТЕР</h2>
+
+  <div class="gallery-wrap">
+    <div class="gallery" id="gallery">
+      <div class="photo">♡</div>
+      <div class="photo">♡</div>
+      <div class="photo">♡</div>
+      <div class="photo">♡</div>
+      <div class="photo">♡</div>
+    </div>
+  </div>
+
+  <div class="gallery-buttons">
+    <button class="arrow" id="prev">←</button>
+    <span id="counter">1 / 5</span>
+    <button class="arrow" id="next">→</button>
+  </div>
+</section>
+
+<section>
+  <div class="ornament">◇ ❦ ◇</div>
+  <h2>ТОЙГО КЕЛЕСИЗБИ?</h2>
+  <p>Жообуңузду калтырыңыз</p>
+
+  <form id="rsvp">
+    <input type="text" placeholder="Аты-жөнүңүз" required>
+
+    <select required>
+      <option value="">Коноктордун саны</option>
+      <option>1 адам</option>
+      <option>2 адам</option>
+      <option>3 адам</option>
+      <option>4 адам</option>
+    </select>
+
+    <select required>
+      <option value="">Жообуңуз</option>
+      <option>Ооба, сөзсүз келем</option>
+      <option>Тилекке каршы, келе албайм</option>
+    </select>
+
+    <button class="submit-btn" type="submit">ЖӨНӨТҮҮ</button>
+  </form>
+</section>
+
+<section class="end">
+  <div class="ornament">❦</div>
+  <h1>Сиздерди күтөбүз!</h1>
+  <p>15 · 08 · 2027</p>
+</section>
+
+<script>
+const yurt = document.getElementById("yurt");
+const openButton = document.getElementById("openYurt");
+const coverText = document.getElementById("coverText");
+
+openButton.addEventListener("click", () => {
+  yurt.classList.add("open");
+  openButton.style.opacity = "0";
+
+  setTimeout(() => {
+    coverText.classList.add("show");
+  }, 600);
+});
+
+const weddingDate = new Date("2027-08-15T17:00:00");
+
+function updateCountdown(){
+  const now = new Date();
+  let distance = weddingDate - now;
+
+  if(distance < 0) distance = 0;
+
+  document.getElementById("days").textContent =
+    Math.floor(distance / (1000*60*60*24));
+
+  document.getElementById("hours").textContent =
+    Math.floor((distance / (1000*60*60)) % 24);
+
+  document.getElementById("minutes").textContent =
+    Math.floor((distance / (1000*60)) % 60);
+
+  document.getElementById("seconds").textContent =
+    Math.floor((distance / 1000) % 60);
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+let slide = 0;
+const gallery = document.getElementById("gallery");
+const counter = document.getElementById("counter");
+const total = 5;
+
+function showSlide(){
+  gallery.style.transform = `translateX(-${slide * 100}%)`;
+  counter.textContent = `${slide + 1} / ${total}`;
+}
+
+document.getElementById("next").addEventListener("click",()=>{
+  slide = (slide + 1) % total;
+  showSlide();
+});
+
+document.getElementById("prev").addEventListener("click",()=>{
+  slide = (slide - 1 + total) % total;
+  showSlide();
+});
+
+document.getElementById("rsvp").addEventListener("submit",(e)=>{
+  e.preventDefault();
+  alert("Рахмат! Жообуңуз кабыл алынды 🤍");
+});
+</script>
+
+</body>
+</html>
