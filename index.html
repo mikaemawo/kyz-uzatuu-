@@ -2,505 +2,2003 @@
 <html lang="ky">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Кыз Узатуу</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<meta name="theme-color" content="#eee3d4">
+
+<title>Нургул — Кыз Узатуу</title>
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+/* =========================
+   ОСНОВА
+========================= */
+
+:root{
+  --milk:#f5eee5;
+  --cream:#eee2d2;
+  --cream2:#e7d7c4;
+  --champagne:#c4a47d;
+  --gold:#a8865f;
+  --brown:#66513f;
+  --deep:#4d3b2f;
+  --line:rgba(139,111,79,.32);
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+  background:var(--milk);
+}
+
 body{
   margin:0;
-  background:#f7f1e7;
-  color:#594b3c;
-  font-family:Georgia,serif;
+  background:var(--milk);
+  color:var(--deep);
+  font-family:Georgia,"Times New Roman",serif;
   text-align:center;
+  overflow-x:hidden;
+}
+
+body.locked{
+  overflow:hidden;
+  height:100vh;
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+img{
+  max-width:100%;
+  display:block;
 }
 
 section{
-  padding:75px 24px;
   position:relative;
-}
-
-.ornament{
-  font-size:26px;
-  color:#b69a70;
-  letter-spacing:8px;
-  margin-bottom:25px;
-}
-
-h1,h2,p{margin-top:0}
-
-h1{
-  font-size:46px;
-  font-weight:400;
-  margin-bottom:8px;
-}
-
-h2{
-  font-size:27px;
-  font-weight:400;
-  letter-spacing:2px;
-}
-
-p{
-  font-size:17px;
-  line-height:1.8;
-}
-
-/* COVER */
-
-.cover{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
   overflow:hidden;
-  background:
-    linear-gradient(#eee7dcaa,#f7f1e7),
-    linear-gradient(160deg,#e7ddd0,#faf6ef);
 }
 
-.small-title{
-  letter-spacing:4px;
-  font-size:13px;
-  margin-bottom:28px;
-}
-
-.yurt{
-  width:280px;
-  height:190px;
-  background:#fffaf1;
-  border:2px solid #cbb794;
-  border-radius:50% 50% 15px 15px;
-  position:relative;
-  box-shadow:0 20px 50px rgba(80,60,40,.10);
-  margin:15px auto 35px;
-}
-
-.yurt:before{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:65px;
-  border-top:2px solid #cbb794;
-  border-radius:50%;
-  top:25px;
-  left:48px;
-}
-
-.door-frame{
-  position:absolute;
-  width:90px;
-  height:115px;
-  bottom:0;
-  left:94px;
-  border:3px solid #b79a6d;
-  overflow:hidden;
-  background:#dcc9aa;
-}
-
-.door{
-  position:absolute;
-  top:0;
-  width:50%;
-  height:100%;
-  background:#bda27b;
-  transition:transform 1.3s ease;
-  z-index:2;
-}
-
-.left{left:0;transform-origin:left}
-.right{right:0;transform-origin:right}
-
-.yurt.open .left{transform:perspective(300px) rotateY(-105deg)}
-.yurt.open .right{transform:perspective(300px) rotateY(105deg)}
-
-.girl{
-  position:absolute;
-  inset:0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:44px;
-  opacity:0;
-  transition:opacity 1s .5s;
-}
-
-.yurt.open .girl{opacity:1}
-
-.open-btn{
-  border:1px solid #a98e67;
-  background:transparent;
-  padding:14px 35px;
-  border-radius:30px;
-  font-family:inherit;
-  letter-spacing:3px;
-  color:#594b3c;
-  font-size:13px;
-}
-
-.reveal{
-  opacity:0;
-  transform:translateY(15px);
-  transition:1s;
-}
-
-.reveal.show{
-  opacity:1;
-  transform:none;
-}
-
-/* DATE */
-
-.date{
-  font-size:38px;
-  letter-spacing:5px;
-  margin:20px 0;
-}
-
-/* COUNTDOWN */
-
-.countdown{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
-  max-width:500px;
-  margin:35px auto 0;
-}
-
-.time{
-  border-top:1px solid #c7b18c;
-  padding-top:18px;
-}
-
-.number{
-  font-size:30px;
-}
-
-.label{
-  font-size:11px;
-  margin-top:8px;
-}
-
-/* BUTTON */
-
-.map-btn,.submit-btn{
-  display:inline-block;
-  border:1px solid #a98e67;
-  border-radius:30px;
-  padding:14px 27px;
-  background:transparent;
-  color:#594b3c;
-  text-decoration:none;
-  font-family:inherit;
-}
-
-/* OWNERS */
-
-.owners{
-  background:#eee5d8;
-}
-
-.names{
-  font-size:31px;
-  font-style:italic;
-  margin-top:20px;
-}
-
-/* DRESS */
-
-.colors{
-  display:flex;
-  justify-content:center;
-  gap:13px;
-  margin-top:30px;
-}
-
-.color{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  border:1px solid #c7bba9;
-}
-
-.c1{background:#f4eee4}
-.c2{background:#dfd0bd}
-.c3{background:#c5ad94}
-.c4{background:#987765}
-.c5{background:#684a45}
-
-/* GALLERY */
-
-.gallery-wrap{
-  overflow:hidden;
-  max-width:350px;
+.content{
+  width:min(88%,520px);
   margin:auto;
 }
 
-.gallery{
-  display:flex;
-  transition:.5s ease;
+
+/* =========================
+   ПЕРВЫЙ ЭКРАН — ЮРТА
+========================= */
+
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#eadfce;
+  overflow:hidden;
+
+  transition:
+    opacity .75s ease,
+    visibility .75s ease;
 }
 
-.photo{
-  min-width:100%;
-  height:440px;
-  background:#e6dac8;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:70px;
-  border:10px solid #fffaf2;
+.intro.finished{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
-.gallery-buttons{
-  margin-top:20px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:35px;
+
+/* изображения лежат идеально друг на друге */
+
+.scene{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+
+  transform:scale(1);
+  transform-origin:50% 69%;
+
+  transition:
+    transform 2.25s cubic-bezier(.65,0,.18,1),
+    filter 1.7s ease;
 }
 
-.arrow{
-  border:none;
-  background:none;
-  font-size:30px;
-  color:#7d674e;
-}
+.scene-image{
+  position:absolute;
+  inset:0;
 
-/* RSVP */
-
-form{
-  max-width:390px;
-  margin:30px auto 0;
-}
-
-input,select{
   width:100%;
-  padding:16px;
-  margin-bottom:12px;
-  border:none;
-  border-bottom:1px solid #bba888;
+  height:100%;
+
+  object-fit:cover;
+  object-position:center center;
+}
+
+
+/* закрытая */
+
+.closed-scene{
+  z-index:2;
+
+  opacity:1;
+
+  transition:
+    opacity 1.15s cubic-bezier(.4,0,.2,1);
+}
+
+
+/* открытая */
+
+.open-scene{
+  z-index:1;
+
+  opacity:1;
+}
+
+
+/* при нажатии закрытая растворяется */
+
+.intro.opening .closed-scene{
+  opacity:0;
+}
+
+
+/* после открытия камера летит внутрь */
+
+.intro.zooming .scene{
+  transform:scale(3.8);
+  filter:brightness(1.16) blur(1px);
+}
+
+
+/* лёгкое затемнение снизу */
+
+.intro-shade{
+  position:absolute;
+  inset:0;
+  z-index:3;
+
+  pointer-events:none;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(30,20,12,0) 55%,
+      rgba(50,35,22,.12) 100%
+    );
+}
+
+
+/* кнопка поверх надписи на самой картинке */
+
+.enter-button{
+  position:absolute;
+
+  z-index:5;
+
+  left:50%;
+  bottom:max(7.5vh,42px);
+
+  transform:translateX(-50%);
+
+  width:190px;
+  height:70px;
+
+  border:0;
   background:transparent;
+
+  cursor:pointer;
+}
+
+
+/* подсказка-пульс */
+
+.enter-pulse{
+  position:absolute;
+
+  left:50%;
+  bottom:max(6.5vh,34px);
+
+  transform:translateX(-50%);
+
+  width:210px;
+  height:78px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(116,86,57,.22);
+
+  z-index:4;
+
+  pointer-events:none;
+
+  animation:pulse 2.2s infinite;
+}
+
+@keyframes pulse{
+  0%{
+    opacity:0;
+    transform:translateX(-50%) scale(.75);
+  }
+
+  40%{
+    opacity:.55;
+  }
+
+  100%{
+    opacity:0;
+    transform:translateX(-50%) scale(1.25);
+  }
+}
+
+
+/* свет из двери */
+
+.door-light{
+  position:absolute;
+
+  z-index:4;
+
+  left:50%;
+  top:65%;
+
+  width:18vw;
+  max-width:110px;
+
+  aspect-ratio:.65;
+
+  transform:translate(-50%,-50%) scale(.5);
+
+  border-radius:50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(255,248,221,.95) 0%,
+      rgba(255,236,190,.65) 30%,
+      rgba(255,230,180,0) 75%
+    );
+
+  filter:blur(12px);
+
+  opacity:0;
+
+  pointer-events:none;
+
+  transition:
+    opacity 1s ease,
+    transform 1.6s ease;
+}
+
+.intro.opening .door-light{
+  opacity:1;
+  transform:translate(-50%,-50%) scale(2.5);
+}
+
+
+/* финальная молочная вспышка */
+
+.flash{
+  position:absolute;
+  inset:0;
+
+  z-index:20;
+
+  background:#fff9ef;
+
+  opacity:0;
+  pointer-events:none;
+}
+
+.intro.flashing .flash{
+  animation:flash .95s ease forwards;
+}
+
+@keyframes flash{
+  0%{opacity:0}
+  45%{opacity:1}
+  100%{opacity:1}
+}
+
+
+/* =========================
+   ПОСЛЕ ВХОДА
+========================= */
+
+.hero{
+  min-height:100svh;
+
+  display:flex;
+  align-items:flex-end;
+
+  padding:
+    max(50px,env(safe-area-inset-top))
+    22px
+    max(55px,env(safe-area-inset-bottom));
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(242,232,219,.08),
+      rgba(224,207,185,.25) 52%,
+      rgba(84,63,47,.48)
+    ),
+    radial-gradient(
+      circle at 70% 20%,
+      #f7e5d3,
+      #d8c5ad 55%,
+      #bda68b
+    );
+
+  color:#fffaf2;
+}
+
+.hero-inner{
+  width:100%;
+  max-width:520px;
+  margin:0 auto;
+}
+
+.hero-small{
+  font-size:13px;
+  letter-spacing:5px;
+  margin-bottom:12px;
+}
+
+.hero-name{
+  margin:0;
+
+  font-family:
+    "Snell Roundhand",
+    "URW Chancery L",
+    cursive;
+
+  font-size:clamp(64px,20vw,94px);
+  font-weight:400;
+  line-height:.95;
+}
+
+.hero-date{
+  margin-top:20px;
+  font-size:16px;
+  letter-spacing:4px;
+}
+
+.scroll-text{
+  margin-top:45px;
+
+  font-size:11px;
+  letter-spacing:3px;
+
+  opacity:.8;
+}
+
+.scroll-arrow{
+  margin-top:8px;
+  font-size:22px;
+
+  animation:arrow 1.7s infinite;
+}
+
+@keyframes arrow{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(8px)}
+}
+
+
+/* =========================
+   ОБЩИЕ БЛОКИ
+========================= */
+
+.paper-section{
+  padding:90px 22px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255,255,255,.45),
+      transparent 35%
+    ),
+    var(--milk);
+}
+
+.paper-section.alt{
+  background:var(--cream);
+}
+
+.ornament{
+  color:var(--gold);
+  font-size:21px;
+
+  margin-bottom:24px;
+
+  opacity:.8;
+}
+
+.section-title{
+  margin:0 0 26px;
+
+  font-weight:400;
+  font-size:25px;
+
+  letter-spacing:2px;
+}
+
+.text{
+  margin:0;
+
+  font-size:17px;
+  line-height:1.9;
+
+  color:var(--brown);
+}
+
+
+/* =========================
+   ПРИГЛАШЕНИЕ
+========================= */
+
+.invitation{
+  min-height:75svh;
+
+  display:flex;
+  align-items:center;
+}
+
+.invitation .section-title{
+  font-size:30px;
+}
+
+
+/* =========================
+   ДАТА
+========================= */
+
+.date-section{
+  padding:100px 20px;
+
+  background:
+    linear-gradient(
+      rgba(247,240,231,.83),
+      rgba(247,240,231,.9)
+    ),
+    var(--cream);
+}
+
+.date-label{
+  font-size:13px;
+  letter-spacing:4px;
+}
+
+.big-date{
+  margin:25px 0 14px;
+
+  font-size:clamp(40px,12vw,58px);
+
+  font-weight:400;
+  letter-spacing:3px;
+}
+
+.day{
+  font-size:14px;
+  letter-spacing:3px;
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-section{
+  padding:85px 15px 95px;
+}
+
+.countdown{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:7px;
+
+  width:min(100%,480px);
+
+  margin:38px auto 0;
+}
+
+.count-box{
+  padding:18px 4px;
+
+  border:1px solid var(--line);
+
+  border-radius:14px;
+
+  background:rgba(255,255,255,.24);
+}
+
+.count-number{
+  font-size:clamp(25px,8vw,38px);
+  line-height:1;
+}
+
+.count-label{
+  margin-top:10px;
+
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+
+/* =========================
+   МЕСТО
+========================= */
+
+.venue-card{
+  width:min(100%,430px);
+
+  margin:35px auto 0;
+
+  padding:12px 12px 28px;
+
+  border:1px solid rgba(151,122,89,.25);
+
+  border-radius:25px;
+
+  background:rgba(255,255,255,.25);
+}
+
+.venue-photo{
+  height:260px;
+
+  border-radius:17px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d5c2a9,
+      #eee3d4 55%,
+      #baa084
+    );
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:60px;
+}
+
+.venue-name{
+  margin:25px 0 7px;
+
+  font-size:21px;
+  letter-spacing:1px;
+}
+
+.address{
+  font-size:14px;
+  line-height:1.6;
+
+  color:#75624f;
+}
+
+.gold-button{
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  min-height:48px;
+
+  margin-top:20px;
+
+  padding:0 26px;
+
+  border:1px solid var(--champagne);
+
+  border-radius:100px;
+
+  background:var(--champagne);
+
+  color:#fffaf4;
+
+  text-decoration:none;
+
+  font-size:12px;
+  letter-spacing:1.5px;
+}
+
+
+/* =========================
+   ТОЙДУН ЭЭЛЕРИ
+========================= */
+
+.owners-name{
+  margin-top:18px;
+
+  font-size:36px;
+
+  font-style:italic;
+  font-weight:400;
+}
+
+
+/* =========================
+   ПРОГРАММА
+========================= */
+
+.timeline{
+  width:min(100%,400px);
+
+  margin:42px auto 0;
+
+  text-align:left;
+}
+
+.timeline-item{
+  display:grid;
+
+  grid-template-columns:72px 25px 1fr;
+
+  min-height:86px;
+}
+
+.timeline-time{
+  padding-top:1px;
+
   font-size:16px;
 }
 
-.submit-btn{
-  margin-top:15px;
+.timeline-line{
+  position:relative;
 }
 
-/* END */
+.timeline-line::before{
+  content:"";
 
-.end{
-  padding:110px 25px;
-  background:#e9dfd1;
+  position:absolute;
+
+  left:50%;
+  top:8px;
+  bottom:-8px;
+
+  width:1px;
+
+  background:var(--champagne);
 }
 
-@media(max-width:420px){
-  h1{font-size:40px}
-  .countdown{gap:4px}
-  .number{font-size:25px}
+.timeline-item:last-child
+.timeline-line::before{
+  bottom:50%;
 }
+
+.timeline-dot{
+  position:absolute;
+
+  top:3px;
+  left:50%;
+
+  width:11px;
+  height:11px;
+
+  transform:translateX(-50%);
+
+  border:2px solid var(--champagne);
+
+  border-radius:50%;
+
+  background:var(--milk);
+}
+
+.timeline-text{
+  padding-left:14px;
+
+  font-size:15px;
+  line-height:1.5;
+}
+
+
+/* =========================
+   DRESS CODE
+========================= */
+
+.palette{
+  display:flex;
+
+  justify-content:center;
+
+  gap:11px;
+
+  margin-top:35px;
+}
+
+.swatch{
+  width:48px;
+  height:48px;
+
+  border-radius:50%;
+
+  border:1px solid rgba(80,60,40,.12);
+
+  box-shadow:
+    inset 0 0 0 3px rgba(255,255,255,.22);
+}
+
+.swatch:nth-child(1){background:#eee7dd}
+.swatch:nth-child(2){background:#d7c8b7}
+.swatch:nth-child(3){background:#baa69a}
+.swatch:nth-child(4){background:#92766f}
+.swatch:nth-child(5){background:#684744}
+
+
+/* =========================
+   ФОТОГАЛЕРЕЯ
+========================= */
+
+.gallery-shell{
+  position:relative;
+
+  width:min(100%,390px);
+
+  margin:35px auto 0;
+
+  overflow:hidden;
+
+  border-radius:28px;
+
+  box-shadow:
+    0 15px 50px rgba(75,55,40,.08);
+}
+
+.gallery-track{
+  display:flex;
+
+  transition:
+    transform .55s
+    cubic-bezier(.22,.61,.36,1);
+}
+
+.gallery-photo{
+  min-width:100%;
+
+  aspect-ratio:3/4;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      #e5d8c8,
+      #cbb59c
+    );
+
+  color:rgba(255,255,255,.75);
+
+  font-size:70px;
+
+  user-select:none;
+}
+
+.gallery-controls{
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:32px;
+
+  margin-top:24px;
+}
+
+.gallery-arrow{
+  width:48px;
+  height:48px;
+
+  border:1px solid var(--line);
+
+  border-radius:50%;
+
+  background:transparent;
+
+  color:var(--brown);
+
+  font-size:20px;
+}
+
+.gallery-count{
+  min-width:45px;
+
+  font-size:13px;
+  letter-spacing:2px;
+}
+
+
+/* =========================
+   RSVP
+========================= */
+
+.rsvp-form{
+  width:min(100%,410px);
+
+  margin:38px auto 0;
+}
+
+.field{
+  width:100%;
+
+  min-height:56px;
+
+  margin-bottom:13px;
+
+  padding:0 17px;
+
+  border:1px solid rgba(136,107,77,.3);
+
+  border-radius:14px;
+
+  outline:none;
+
+  background:rgba(255,255,255,.3);
+
+  color:var(--deep);
+
+  font-size:15px;
+}
+
+.field:focus{
+  border-color:var(--gold);
+}
+
+.rsvp-button{
+  width:100%;
+  min-height:55px;
+
+  margin-top:7px;
+
+  border:0;
+  border-radius:100px;
+
+  background:var(--champagne);
+
+  color:white;
+
+  letter-spacing:2px;
+
+  font-size:12px;
+}
+
+.form-message{
+  display:none;
+
+  margin-top:25px;
+
+  font-size:17px;
+  line-height:1.7;
+}
+
+
+/* =========================
+   ФИНАЛ
+========================= */
+
+.final{
+  min-height:75svh;
+
+  display:flex;
+  align-items:center;
+
+  padding:80px 25px;
+
+  background:
+    linear-gradient(
+      rgba(237,225,209,.35),
+      rgba(218,198,175,.65)
+    ),
+    var(--cream);
+}
+
+.final-name{
+  margin:20px 0 10px;
+
+  font-family:
+    "Snell Roundhand",
+    cursive;
+
+  font-size:58px;
+
+  font-weight:400;
+}
+
+.final-text{
+  font-size:28px;
+  line-height:1.3;
+}
+
+
+/* =========================
+   ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ
+========================= */
+
+.fade-up{
+  opacity:0;
+  transform:translateY(30px);
+
+  transition:
+    opacity .9s ease,
+    transform .9s ease;
+}
+
+.fade-up.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+
+/* =========================
+   ТЕЛЕФОНЫ
+========================= */
+
+@media(max-width:380px){
+
+  .paper-section{
+    padding-left:18px;
+    padding-right:18px;
+  }
+
+  .count-number{
+    font-size:24px;
+  }
+
+  .count-label{
+    font-size:8px;
+  }
+
+  .palette{
+    gap:8px;
+  }
+
+  .swatch{
+    width:43px;
+    height:43px;
+  }
+
+}
+
 </style>
 </head>
 
-<body>
 
-<section class="cover">
-  <div class="small-title">СИЗГЕ ЧАКЫРУУ БАР</div>
+<body class="locked">
 
-  <div class="yurt" id="yurt">
-    <div class="door-frame">
-      <div class="girl">♡</div>
-      <div class="door left"></div>
-      <div class="door right"></div>
+
+<!-- =====================================
+     ЭКРАН С ЮРТОЙ
+===================================== -->
+
+<div class="intro" id="intro">
+
+  <div class="scene" id="scene">
+
+    <img
+      src="yurt-open.jpg"
+      class="scene-image open-scene"
+      alt=""
+    >
+
+    <img
+      src="yurt-closed.jpg"
+      class="scene-image closed-scene"
+      alt="Нургул Кыз Узатуу"
+    >
+
+  </div>
+
+  <div class="intro-shade"></div>
+
+  <div class="door-light"></div>
+
+  <div class="enter-pulse"></div>
+
+  <button
+    class="enter-button"
+    id="enterButton"
+    aria-label="Приглашение ачуу">
+  </button>
+
+  <div class="flash"></div>
+
+</div>
+
+
+
+<!-- =====================================
+     ВТОРОЙ ЭКРАН
+===================================== -->
+
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div class="hero-small">
+      КЫЗ УЗАТУУ
     </div>
-  </div>
 
-  <button class="open-btn" id="openYurt">БАСЫҢЫЗ</button>
+    <h1 class="hero-name">
+      Нургул
+    </h1>
 
-  <div class="reveal" id="coverText">
-    <p style="margin-top:35px;letter-spacing:4px;">КЫЗ УЗАТУУ</p>
-    <h1>Айлина</h1>
-    <p>↓</p>
-  </div>
-</section>
-
-<section>
-  <div class="ornament">◇ ❦ ◇</div>
-  <h2>Урматтуу коноктор!</h2>
-  <p>
-    Сиздерди кызыбыз Айлинанын<br>
-    кыз узатуу тоюна арналган<br>
-    ак дасторконубуздун кадырлуу<br>
-    коногу болууга чакырабыз.
-  </p>
-</section>
-
-<section>
-  <div class="ornament">❦</div>
-  <h2>ТОЙ КҮНҮ</h2>
-  <div class="date">15 · 08 · 2027</div>
-  <p>Саат 17:00</p>
-</section>
-
-<section>
-  <h2>ТОЙГО ЧЕЙИН</h2>
-
-  <div class="countdown">
-    <div class="time"><div class="number" id="days">00</div><div class="label">КҮН</div></div>
-    <div class="time"><div class="number" id="hours">00</div><div class="label">СААТ</div></div>
-    <div class="time"><div class="number" id="minutes">00</div><div class="label">МҮНӨТ</div></div>
-    <div class="time"><div class="number" id="seconds">00</div><div class="label">СЕКУНД</div></div>
-  </div>
-</section>
-
-<section>
-  <div class="ornament">◇</div>
-  <h2>ДАРЕК</h2>
-  <p>
-    «Ала-Тоо» рестораны<br>
-    Бишкек шаары
-  </p>
-
-  <a class="map-btn" href="#" target="_blank">КАРТАНЫ АЧУУ</a>
-</section>
-
-<section class="owners">
-  <div class="ornament">❦</div>
-  <h2>ТОЙДУН ЭЭЛЕРИ</h2>
-  <div class="names">Азамат & Айгүл</div>
-</section>
-
-<section>
-  <h2>DRESS CODE</h2>
-  <p>Сиздерди төмөнкү түстөрдө<br>көрүүгө кубанычта болобуз.</p>
-
-  <div class="colors">
-    <div class="color c1"></div>
-    <div class="color c2"></div>
-    <div class="color c3"></div>
-    <div class="color c4"></div>
-    <div class="color c5"></div>
-  </div>
-</section>
-
-<section>
-  <div class="ornament">❦</div>
-  <h2>БИЗДИН ЭСТЕЛИКТЕР</h2>
-
-  <div class="gallery-wrap">
-    <div class="gallery" id="gallery">
-      <div class="photo">♡</div>
-      <div class="photo">♡</div>
-      <div class="photo">♡</div>
-      <div class="photo">♡</div>
-      <div class="photo">♡</div>
+    <div class="hero-date">
+      15 · 08 · 2027
     </div>
+
+    <div class="scroll-text">
+      ТӨМӨН ЖЫЛДЫРЫҢЫЗ
+    </div>
+
+    <div class="scroll-arrow">
+      ↓
+    </div>
+
   </div>
 
-  <div class="gallery-buttons">
-    <button class="arrow" id="prev">←</button>
-    <span id="counter">1 / 5</span>
-    <button class="arrow" id="next">→</button>
+</section>
+
+
+
+<!-- =====================================
+     ПРИГЛАШЕНИЕ
+===================================== -->
+
+<section class="paper-section invitation">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ◇ ❦ ◇
+    </div>
+
+    <h2 class="section-title">
+      Урматтуу коноктор!
+    </h2>
+
+    <p class="text">
+      Сиздерди кызыбыз Нургулдун
+      кыз узатуу тоюна арналган
+      ак дасторконубуздун кадырлуу
+      коногу болууга чакырабыз.
+    </p>
+
   </div>
+
 </section>
 
-<section>
-  <div class="ornament">◇ ❦ ◇</div>
-  <h2>ТОЙГО КЕЛЕСИЗБИ?</h2>
-  <p>Жообуңузду калтырыңыз</p>
 
-  <form id="rsvp">
-    <input type="text" placeholder="Аты-жөнүңүз" required>
 
-    <select required>
-      <option value="">Коноктордун саны</option>
-      <option>1 адам</option>
-      <option>2 адам</option>
-      <option>3 адам</option>
-      <option>4 адам</option>
-    </select>
+<!-- =====================================
+     ДАТА
+===================================== -->
 
-    <select required>
-      <option value="">Жообуңуз</option>
-      <option>Ооба, сөзсүз келем</option>
-      <option>Тилекке каршы, келе албайм</option>
-    </select>
+<section class="date-section">
 
-    <button class="submit-btn" type="submit">ЖӨНӨТҮҮ</button>
-  </form>
+  <div class="content fade-up">
+
+    <div class="date-label">
+      ТОЙ КҮНҮ
+    </div>
+
+    <div class="big-date">
+      15 · 08 · 2027
+    </div>
+
+    <div class="day">
+      ЖЕКШЕМБИ · 17:00
+    </div>
+
+  </div>
+
 </section>
 
-<section class="end">
-  <div class="ornament">❦</div>
-  <h1>Сиздерди күтөбүз!</h1>
-  <p>15 · 08 · 2027</p>
+
+
+<!-- =====================================
+     COUNTDOWN
+===================================== -->
+
+<section class="paper-section countdown-section">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ❦
+    </div>
+
+    <h2 class="section-title">
+      ТОЙГО ДАГЫ КАЛГАН УБАКЫТ
+    </h2>
+
+
+    <div class="countdown">
+
+      <div class="count-box">
+        <div
+          class="count-number"
+          id="days">
+          00
+        </div>
+
+        <div class="count-label">
+          КҮН
+        </div>
+      </div>
+
+
+      <div class="count-box">
+        <div
+          class="count-number"
+          id="hours">
+          00
+        </div>
+
+        <div class="count-label">
+          СААТ
+        </div>
+      </div>
+
+
+      <div class="count-box">
+        <div
+          class="count-number"
+          id="minutes">
+          00
+        </div>
+
+        <div class="count-label">
+          МҮНӨТ
+        </div>
+      </div>
+
+
+      <div class="count-box">
+        <div
+          class="count-number"
+          id="seconds">
+          00
+        </div>
+
+        <div class="count-label">
+          СЕКУНД
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
+
+
+
+<!-- =====================================
+     МЕСТО
+===================================== -->
+
+<section class="paper-section alt">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ◇
+    </div>
+
+    <h2 class="section-title">
+      ӨТКӨРҮЛӨ ТУРГАН ЖЕРИ
+    </h2>
+
+
+    <div class="venue-card">
+
+      <div class="venue-photo">
+        ♡
+      </div>
+
+      <div class="venue-name">
+        АЛА-ТОО РЕСТОРАНЫ
+      </div>
+
+      <div class="address">
+        Бишкек шаары<br>
+        Ала-Арча жолу, 12
+      </div>
+
+      <!--
+      Сюда потом вставим
+      настоящую ссылку Google Maps / 2GIS
+      -->
+
+      <a
+        class="gold-button"
+        href="#"
+        target="_blank">
+        КАРТАНЫ АЧУУ →
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================
+     ТОЙДУН ЭЭЛЕРИ
+===================================== -->
+
+<section class="paper-section">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ❦
+    </div>
+
+    <h2 class="section-title">
+      ТОЙДУН ЭЭЛЕРИ
+    </h2>
+
+    <div class="owners-name">
+      Азамат & Айгүл
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================
+     ПРОГРАММА
+===================================== -->
+
+<section class="paper-section alt">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ◇ ❦ ◇
+    </div>
+
+    <h2 class="section-title">
+      ПРОГРАММА
+    </h2>
+
+
+    <div class="timeline">
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-time">
+          16:00
+        </div>
+
+        <div class="timeline-line">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-text">
+          Конокторду тосуу
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-time">
+          17:00
+        </div>
+
+        <div class="timeline-line">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-text">
+          Тойдун башталышы
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-time">
+          19:00
+        </div>
+
+        <div class="timeline-line">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-text">
+          Кыз узатуу салты
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-time">
+          20:00
+        </div>
+
+        <div class="timeline-line">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-text">
+          Ак дасторкон
+        </div>
+
+      </div>
+
+
+      <div class="timeline-item">
+
+        <div class="timeline-time">
+          23:00
+        </div>
+
+        <div class="timeline-line">
+          <div class="timeline-dot"></div>
+        </div>
+
+        <div class="timeline-text">
+          Тойдун жыйынтыгы
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================
+     DRESS CODE
+===================================== -->
+
+<section class="paper-section">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ❦
+    </div>
+
+    <h2 class="section-title">
+      DRESS CODE
+    </h2>
+
+    <p class="text">
+      Тойдун атмосферасын
+      бирге толуктоо үчүн
+      төмөнкү түстөрдү тандасаңыздар болот.
+    </p>
+
+
+    <div class="palette">
+
+      <div class="swatch"></div>
+      <div class="swatch"></div>
+      <div class="swatch"></div>
+      <div class="swatch"></div>
+      <div class="swatch"></div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================
+     ФОТОГАЛЕРЕЯ
+===================================== -->
+
+<section class="paper-section alt">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ◇
+    </div>
+
+    <h2 class="section-title">
+      НУРГУЛ
+    </h2>
+
+
+    <div
+      class="gallery-shell"
+      id="galleryShell">
+
+      <div
+        class="gallery-track"
+        id="galleryTrack">
+
+        <!--
+        Позже вместо этих блоков
+        поставим настоящие фотографии:
+
+        <img src="photo1.jpg">
+        -->
+
+        <div class="gallery-photo">
+          ♡
+        </div>
+
+        <div class="gallery-photo">
+          ♡
+        </div>
+
+        <div class="gallery-photo">
+          ♡
+        </div>
+
+        <div class="gallery-photo">
+          ♡
+        </div>
+
+        <div class="gallery-photo">
+          ♡
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="gallery-controls">
+
+      <button
+        class="gallery-arrow"
+        id="prevPhoto">
+        ←
+      </button>
+
+      <div
+        class="gallery-count"
+        id="galleryCount">
+        1 / 5
+      </div>
+
+      <button
+        class="gallery-arrow"
+        id="nextPhoto">
+        →
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================
+     RSVP
+===================================== -->
+
+<section class="paper-section">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ◇ ❦ ◇
+    </div>
+
+    <h2 class="section-title">
+      ТОЙГО КЕЛЕСИЗБИ?
+    </h2>
+
+    <p class="text">
+      Сураныч, жообуңузду калтырыңыз.
+    </p>
+
+
+    <form
+      class="rsvp-form"
+      id="rsvpForm">
+
+
+      <input
+        class="field"
+        type="text"
+        placeholder="Аты-жөнүңүз"
+        required
+      >
+
+
+      <select
+        class="field"
+        required>
+
+        <option value="">
+          Коноктордун саны
+        </option>
+
+        <option>
+          1 адам
+        </option>
+
+        <option>
+          2 адам
+        </option>
+
+        <option>
+          3 адам
+        </option>
+
+        <option>
+          4 адам
+        </option>
+
+        <option>
+          5+ адам
+        </option>
+
+      </select>
+
+
+      <select
+        class="field"
+        required>
+
+        <option value="">
+          Тойго келесизби?
+        </option>
+
+        <option>
+          Ооба, сөзсүз келем
+        </option>
+
+        <option>
+          Тилекке каршы, келе албайм
+        </option>
+
+      </select>
+
+
+      <button
+        class="rsvp-button"
+        type="submit">
+        ЖӨНӨТҮҮ
+      </button>
+
+
+      <div
+        class="form-message"
+        id="formMessage">
+
+        Рахмат 🤍<br>
+        Жообуңуз кабыл алынды.
+
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================
+     ФИНАЛ
+===================================== -->
+
+<section class="final">
+
+  <div class="content fade-up">
+
+    <div class="ornament">
+      ❦
+    </div>
+
+    <div class="final-text">
+      Сиздерди<br>
+      күтөбүз!
+    </div>
+
+    <div class="final-name">
+      Нургул
+    </div>
+
+    <div>
+      15 · 08 · 2027
+    </div>
+
+  </div>
+
+</section>
+
+
 
 <script>
-const yurt = document.getElementById("yurt");
-const openButton = document.getElementById("openYurt");
-const coverText = document.getElementById("coverText");
 
-openButton.addEventListener("click", () => {
-  yurt.classList.add("open");
-  openButton.style.opacity = "0";
+/* =====================================
+   ОТКРЫТИЕ ЮРТЫ
+===================================== */
 
-  setTimeout(() => {
-    coverText.classList.add("show");
-  }, 600);
-});
+const intro =
+  document.getElementById("intro");
 
-const weddingDate = new Date("2027-08-15T17:00:00");
+const enterButton =
+  document.getElementById("enterButton");
+
+
+let invitationOpened = false;
+
+
+enterButton.addEventListener(
+  "click",
+  function(){
+
+    if(invitationOpened) return;
+
+    invitationOpened = true;
+
+
+    /*
+    1. Показываем открытую юрту
+    */
+
+    intro.classList.add("opening");
+
+
+    /*
+    2. Камера начинает
+       приближаться к двери
+    */
+
+    setTimeout(function(){
+
+      intro.classList.add("zooming");
+
+    },900);
+
+
+    /*
+    3. Молочная вспышка
+    */
+
+    setTimeout(function(){
+
+      intro.classList.add("flashing");
+
+    },2450);
+
+
+    /*
+    4. Полностью убираем
+       первый экран
+    */
+
+    setTimeout(function(){
+
+      intro.classList.add("finished");
+
+      document.body.classList.remove(
+        "locked"
+      );
+
+      window.scrollTo(0,0);
+
+    },3200);
+
+  }
+);
+
+
+
+/* =====================================
+   COUNTDOWN
+===================================== */
+
+const weddingDate =
+  new Date(
+    "2027-08-15T17:00:00+06:00"
+  );
+
 
 function updateCountdown(){
+
   const now = new Date();
-  let distance = weddingDate - now;
 
-  if(distance < 0) distance = 0;
+  let distance =
+    weddingDate.getTime()
+    - now.getTime();
 
-  document.getElementById("days").textContent =
-    Math.floor(distance / (1000*60*60*24));
 
-  document.getElementById("hours").textContent =
-    Math.floor((distance / (1000*60*60)) % 24);
+  if(distance < 0){
+    distance = 0;
+  }
 
-  document.getElementById("minutes").textContent =
-    Math.floor((distance / (1000*60)) % 60);
 
-  document.getElementById("seconds").textContent =
-    Math.floor((distance / 1000) % 60);
+  const days =
+    Math.floor(
+      distance /
+      (1000*60*60*24)
+    );
+
+
+  const hours =
+    Math.floor(
+      distance /
+      (1000*60*60)
+    ) % 24;
+
+
+  const minutes =
+    Math.floor(
+      distance /
+      (1000*60)
+    ) % 60;
+
+
+  const seconds =
+    Math.floor(
+      distance / 1000
+    ) % 60;
+
+
+  document.getElementById(
+    "days"
+  ).textContent = days;
+
+
+  document.getElementById(
+    "hours"
+  ).textContent =
+    String(hours).padStart(2,"0");
+
+
+  document.getElementById(
+    "minutes"
+  ).textContent =
+    String(minutes).padStart(2,"0");
+
+
+  document.getElementById(
+    "seconds"
+  ).textContent =
+    String(seconds).padStart(2,"0");
+
 }
+
 
 updateCountdown();
-setInterval(updateCountdown,1000);
 
-let slide = 0;
-const gallery = document.getElementById("gallery");
-const counter = document.getElementById("counter");
-const total = 5;
+setInterval(
+  updateCountdown,
+  1000
+);
 
-function showSlide(){
-  gallery.style.transform = `translateX(-${slide * 100}%)`;
-  counter.textContent = `${slide + 1} / ${total}`;
+
+
+/* =====================================
+   ФОТОКАРУСЕЛЬ
+===================================== */
+
+const track =
+  document.getElementById(
+    "galleryTrack"
+  );
+
+const counter =
+  document.getElementById(
+    "galleryCount"
+  );
+
+const galleryShell =
+  document.getElementById(
+    "galleryShell"
+  );
+
+
+const totalPhotos = 5;
+
+let currentPhoto = 0;
+
+
+function showPhoto(){
+
+  track.style.transform =
+    `translateX(-${currentPhoto*100}%)`;
+
+  counter.textContent =
+    `${currentPhoto+1} / ${totalPhotos}`;
+
 }
 
-document.getElementById("next").addEventListener("click",()=>{
-  slide = (slide + 1) % total;
-  showSlide();
-});
 
-document.getElementById("prev").addEventListener("click",()=>{
-  slide = (slide - 1 + total) % total;
-  showSlide();
-});
+document.getElementById(
+  "nextPhoto"
+).addEventListener(
+  "click",
+  function(){
 
-document.getElementById("rsvp").addEventListener("submit",(e)=>{
-  e.preventDefault();
-  alert("Рахмат! Жообуңуз кабыл алынды 🤍");
-});
+    currentPhoto =
+      (currentPhoto+1)
+      % totalPhotos;
+
+    showPhoto();
+
+  }
+);
+
+
+document.getElementById(
+  "prevPhoto"
+).addEventListener(
+  "click",
+  function(){
+
+    currentPhoto =
+      (currentPhoto-1+totalPhotos)
+      % totalPhotos;
+
+    showPhoto();
+
+  }
+);
+
+
+/* свайп пальцем */
+
+let touchStartX = 0;
+
+let touchEndX = 0;
+
+
+galleryShell.addEventListener(
+  "touchstart",
+  function(e){
+
+    touchStartX =
+      e.changedTouches[0].screenX;
+
+  },
+  {passive:true}
+);
+
+
+galleryShell.addEventListener(
+  "touchend",
+  function(e){
+
+    touchEndX =
+      e.changedTouches[0].screenX;
+
+    handleSwipe();
+
+  },
+  {passive:true}
+);
+
+
+function handleSwipe(){
+
+  const difference =
+    touchStartX-touchEndX;
+
+
+  if(Math.abs(difference)<45){
+    return;
+  }
+
+
+  if(difference>0){
+
+    currentPhoto =
+      (currentPhoto+1)
+      % totalPhotos;
+
+  }else{
+
+    currentPhoto =
+      (currentPhoto-1+totalPhotos)
+      % totalPhotos;
+
+  }
+
+
+  showPhoto();
+
+}
+
+
+
+/* =====================================
+   RSVP
+===================================== */
+
+document.getElementById(
+  "rsvpForm"
+).addEventListener(
+  "submit",
+  function(event){
+
+    event.preventDefault();
+
+    document.getElementById(
+      "formMessage"
+    ).style.display="block";
+
+  }
+);
+
+
+
+/* =====================================
+   АНИМАЦИЯ ПРИ СКРОЛЛЕ
+===================================== */
+
+const observer =
+  new IntersectionObserver(
+
+    function(entries){
+
+      entries.forEach(
+        function(entry){
+
+          if(entry.isIntersecting){
+
+            entry.target
+              .classList
+              .add("visible");
+
+          }
+
+        }
+      );
+
+    },
+
+    {
+      threshold:.15
+    }
+
+  );
+
+
+document
+  .querySelectorAll(".fade-up")
+  .forEach(
+    function(element){
+
+      observer.observe(element);
+
+    }
+  );
+
 </script>
 
 </body>
