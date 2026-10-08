@@ -190,10 +190,10 @@ button,input,select{font:inherit}
 }
 
 /* Unified silk-paper atmosphere: soft-edged photographic layers */
-body{background:#f4e8d7}
-.screen{background-color:#f4e8d7;isolation:isolate}
+body{background:#f4e8d7;background-image:linear-gradient(180deg,#f4e8d7,#f1e1ce 45%,#f4e8d7)}
+.screen{background-color:transparent;isolation:isolate}
 .screen.bg-photo{background-image:none!important}
-.screen.bg-photo::before{content:"";position:absolute;inset:-2px;z-index:0;background-image:var(--art);background-size:cover;background-position:center;opacity:.92;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 87%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 12%,#000 87%,transparent 100%);transform:scale(1.035) translateY(1%);transition:transform 3.4s ease,opacity 1.6s ease}
+.screen.bg-photo::before{content:"";position:absolute;inset:-2px;z-index:0;background-image:var(--art);background-size:cover;background-position:center;opacity:.75;pointer-events:none;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 24%,#000 76%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 24%,#000 76%,transparent 100%);transform:scale(1.035) translateY(1%);transition:transform 3.4s ease,opacity 1.6s ease}
 .screen.bg-photo.in-view::before{transform:scale(1) translateY(0)}
 .screen.bg-photo::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(244,232,215,.20),transparent 22%,transparent 76%,rgba(244,232,215,.28))}
 .screen.bg1{--art:url("bg1.jpg")}.screen.bg2{--art:url("bg2.jpg")}.screen.bg3{--art:url("bg3.jpg")}.screen.bg4{--art:url("bg4.jpg")}.screen.bg5{--art:url("bg5.jpg")}.screen.bg6{--art:url("bg6.jpg")}
@@ -201,7 +201,7 @@ body{background:#f4e8d7}
 .screen.bg-photo .orn{opacity:.28}
 .screen.bg-photo .mountains{opacity:.09}
 /* The first page: elegant title above the framed portrait */
-.portrait-hero{display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,3svh,28px);padding:clamp(26px,5svh,56px) 0 24px;background:radial-gradient(ellipse at 50% 23%,#fff7ed 0%,#f3e4d0 70%,#e9d3b7 100%)}
+.portrait-hero{display:flex;flex-direction:column;justify-content:center;gap:clamp(6px,1.5svh,15px);padding:12px 0 14px;background:radial-gradient(ellipse at 50% 23%,#fff7ed 0%,#f3e4d0 70%,#e9d3b7 100%)}
 .portrait-hero::before{content:"";position:absolute;inset:0;z-index:0;opacity:.3;pointer-events:none;background:url("bg4.jpg") center/cover;mask-image:linear-gradient(to bottom,#000,transparent 53%);-webkit-mask-image:linear-gradient(to bottom,#000,transparent 53%)}
 .portrait-copy{position:relative;z-index:3;text-align:center;color:#65442e;padding:0 18px;order:0}
 .portrait-copy .hero-name{font-family:"Snell Roundhand","Apple Chancery","URW Chancery L",cursive;font-style:italic;font-weight:400;font-size:clamp(74px,21vw,112px);line-height:1.06;margin:0;text-shadow:0 3px 16px rgba(255,255,255,.65)}
@@ -209,7 +209,7 @@ body{background:#f4e8d7}
 .portrait-copy .hero-name,.portrait-copy .hero-sub{opacity:0;transform:translateY(23px);transition:opacity 1.25s ease,transform 1.25s ease}
 .portrait-hero.started .hero-name{opacity:1;transform:none;transition-delay:.95s}
 .portrait-hero.started .hero-sub{opacity:1;transform:none;transition-delay:1.65s}
-.portrait-frame{position:relative;z-index:2;order:1;width:min(78vw,375px);height:min(57svh,570px);margin:0 auto;overflow:hidden;border:7px solid rgba(255,249,240,.9);border-radius:155px 155px 14px 14px;box-shadow:0 14px 44px rgba(105,69,42,.2),0 0 0 1px rgba(164,117,72,.25);opacity:0;transform:translateY(22px) scale(.985);transition:opacity 1.2s ease,transform 2s ease}
+.portrait-frame{position:relative;z-index:2;order:1;width:min(94vw,510px);height:min(68svh,690px);margin:0 auto;overflow:hidden;border:7px solid rgba(255,249,240,.9);border-radius:155px 155px 14px 14px;box-shadow:0 14px 44px rgba(105,69,42,.2),0 0 0 1px rgba(164,117,72,.25);opacity:0;transform:translateY(22px) scale(.985);transition:opacity 1.2s ease,transform 2s ease}
 .portrait-hero.started .portrait-frame{opacity:1;transform:none;transition-delay:.12s}
 .portrait-frame img{width:100%;height:100%;object-fit:cover;object-position:center 24%;display:block;transform:scale(1.07);transition:transform 8s ease}
 .portrait-hero.started .portrait-frame img{transform:scale(1)}
@@ -218,11 +218,17 @@ body{background:#f4e8d7}
 .portrait-hero.started .portrait-scroll{opacity:1}
 .photo{position:relative;overflow:hidden;aspect-ratio:3/4}
 .photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
-@media(max-height:680px){.portrait-frame{height:52svh;width:min(67vw,290px)}.portrait-copy .hero-name{font-size:65px}.portrait-hero{gap:10px}}
+@media(max-height:680px){.portrait-frame{height:63svh;width:min(92vw,430px)}.portrait-copy .hero-name{font-size:65px}.portrait-hero{gap:10px}}
 @media(prefers-reduced-motion:reduce){.portrait-frame,.portrait-frame img,.portrait-copy .hero-name,.portrait-copy .hero-sub,.screen.bg-photo::before{transition-duration:.01ms!important}}
+
+/* Music controls */
+.music-toggle{position:fixed;right:16px;top:calc(16px + env(safe-area-inset-top));z-index:1001;width:46px;height:46px;border:1px solid rgba(173,131,87,.65);border-radius:50%;background:rgba(251,243,231,.88);color:#785534;box-shadow:0 5px 24px rgba(70,46,27,.15);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;cursor:pointer;font-size:22px}
+.music-toggle.visible{display:flex}
 </style>
 </head>
 <body class="locked">
+<audio id="backgroundMusic" src="music.mp3" preload="auto" loop playsinline></audio>
+<button id="musicToggle" class="music-toggle" type="button" aria-label="Выключить музыку" aria-pressed="true">♫</button>
 
 
 <div class="intro" id="intro">
@@ -286,12 +292,12 @@ body{background:#f4e8d7}
 
 
 <section class="screen bg-photo bg4 decorated">
- <div class="inner paper"><h2 class="script script-title reveal">Нургул</h2><div class="gallery-window reveal" id="galleryWindow"><div class="gallery" id="gallery"><div class="photo"><img src="portrait-1.png" alt="Нургул — сүрөт 1" loading="lazy"></div><div class="photo"><img src="portrait-2.png" alt="Нургул — сүрөт 2" loading="lazy"></div></div></div><div class="controls reveal"><button class="arrow" id="prev">←</button><span id="counter">1 / 2</span><button class="arrow" id="next">→</button></div></div>
+ <div class="inner paper"><h2 class="script script-title reveal">Нургул</h2><div class="gallery-window reveal" id="galleryWindow"><div class="gallery" id="gallery"><div class="photo"><img src="portrait-1.png" alt="Нургул — сүрөт 1" loading="lazy"></div><div class="photo"><img src="gallery-4.jpg" alt="Нургул — сүрөт 2" loading="lazy"></div><div class="photo"><img src="nurgul-hero.jpg" alt="Нургул — сүрөт 3" loading="lazy"></div><div class="photo"><img src="gallery-1.jpg" alt="Нургул — сүрөт 4" loading="lazy"></div><div class="photo"><img src="gallery-2.jpg" alt="Нургул — сүрөт 5" loading="lazy"></div><div class="photo"><img src="gallery-3.jpg" alt="Нургул — сүрөт 6" loading="lazy"></div></div></div><div class="controls reveal"><button class="arrow" id="prev">←</button><span id="counter">1 / 6</span><button class="arrow" id="next">→</button></div></div>
 </section>
 
 
 <section class="screen bg-photo bg5 decorated">
- <div class="inner paper"><h2 class="title reveal">ТОЙГО КЕЛЕСИЗБИ?</h2><p class="copy reveal">Сураныч, жообуңузду калтырыңыз.</p><form id="form" class="reveal"><input class="field" placeholder="Аты-жөнүңүз" required><select class="field" required><option value="">Коноктордун саны</option><option>1 адам</option><option>2 адам</option><option>3 адам</option><option>4 адам</option><option>5+ адам</option></select><select class="field" required><option value="">Тойго келесизби?</option><option>Ооба, сөзсүз келем</option><option>Тилекке каршы, келе албайм</option></select><button class="submit">ЖӨНӨТҮҮ</button><div class="success" id="success">Рахмат 🤍<br>Жообуңуз кабыл алынды.</div></form></div>
+ <div class="inner paper"><h2 class="title reveal">ТОЙГО КЕЛЕСИЗБИ?</h2><p class="copy reveal">Сураныч, жообуңузду калтырыңыз.</p><form id="form" class="reveal"><input class="field" placeholder="Аты-жөнүңүз" required><select class="field" required><option value="">Коноктордун саны</option><option>1 адам</option><option>2 адам</option><option>3 адам</option></select><select class="field" required><option value="">Тойго келесизби?</option><option>Ооба, сөзсүз келем</option><option>Тилекке каршы, келе албайм</option></select><button class="submit">ЖӨНӨТҮҮ</button><div class="success" id="success">WhatsApp ачылат. Жообуңузду жөнөтүү үчүн «Жөнөтүү» баскычын басыңыз.</div></form></div>
 </section>
 
 
@@ -316,7 +322,12 @@ document.querySelectorAll(".mountains-sec").forEach(s=>{
 
 
 const intro=document.getElementById("intro"),enter=document.getElementById("enter");let opened=false;
-function openInvitation(){if(opened)return;opened=true;intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");window.scrollTo(0,0);document.getElementById("portraitHero").classList.add("started")},3150)}
+const bgMusic=document.getElementById('backgroundMusic');
+const musicToggle=document.getElementById('musicToggle');
+bgMusic.volume=.75;
+function startMusic(){bgMusic.play().then(()=>{musicToggle.textContent='♫';musicToggle.setAttribute('aria-pressed','true')}).catch(()=>{musicToggle.textContent='♪̸';musicToggle.setAttribute('aria-pressed','false')})}
+musicToggle.addEventListener('click',()=>{if(bgMusic.paused){startMusic()}else{bgMusic.pause();musicToggle.textContent='♪̸';musicToggle.setAttribute('aria-pressed','false')}});
+function openInvitation(){if(opened)return;opened=true;musicToggle.classList.add('visible');startMusic();intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");window.scrollTo(0,0);document.getElementById("portraitHero").classList.add("started")},3150)}
 enter.addEventListener("click",e=>{e.preventDefault();openInvitation()});intro.addEventListener("click",()=>{if(!opened)openInvitation()});
 
 
@@ -328,10 +339,26 @@ const target=new Date("2027-08-15T17:00:00+06:00");
 function tick(){let x=Math.max(0,target-Date.now());days.textContent=Math.floor(x/86400000);hours.textContent=String(Math.floor(x/3600000)%24).padStart(2,"0");minutes.textContent=String(Math.floor(x/60000)%60).padStart(2,"0");seconds.textContent=String(Math.floor(x/1000)%60).padStart(2,"0")}tick();setInterval(tick,1000);
 
 
-const gallery=document.getElementById("gallery"),gw=document.getElementById("galleryWindow"),counter=document.getElementById("counter");let p=0,total=2;
+const gallery=document.getElementById("gallery"),gw=document.getElementById("galleryWindow"),counter=document.getElementById("counter");let p=0,total=gallery.children.length;
 function move(){gallery.style.transform=`translateX(-${p*100}%)`;counter.textContent=`${p+1} / ${total}`}
 next.onclick=()=>{p=(p+1)%total;move()};prev.onclick=()=>{p=(p-1+total)%total;move()};
 let sx=0;gw.addEventListener("touchstart",e=>sx=e.changedTouches[0].screenX,{passive:true});gw.addEventListener("touchend",e=>{let d=sx-e.changedTouches[0].screenX;if(Math.abs(d)<45)return;p=d>0?(p+1)%total:(p-1+total)%total;move()},{passive:true});
-form.addEventListener("submit",e=>{e.preventDefault();success.style.display="block"});
+// Set the recipient's international WhatsApp number (digits only) before publishing.
+const WHATSAPP_NUMBER = "996771105716";
+form.addEventListener("submit",e=>{
+ e.preventDefault();
+ const fields=form.querySelectorAll("input,select");
+ const name=fields[0].value.trim(), count=fields[1].value, answer=fields[2].value;
+ if(!name||!count||!answer)return;
+ const message=`Саламатсызбы! Нургулдун кыз узатуусуна жооп:\nАты-жөнү: ${name}\nКоноктор: ${count}\nЖообу: ${answer}`;
+ if(!WHATSAPP_NUMBER){alert("WhatsApp номерин кошуу керек. Сайттын ээсине кайрылыңыз.");return;}
+ const url=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+ success.style.display="block";
+ window.location.href=url;
+});
+// Restore the opening sequence on reload and when returning via browser history.
+window.addEventListener('pageshow',event=>{if(event.persisted){window.location.reload()}});
+// Replay section reveals on each new visit, rather than keeping a previous visual state.
+window.addEventListener('pagehide',()=>{document.querySelectorAll('.reveal.show').forEach(el=>el.classList.remove('show'))});
 </script>
 </body></html>
