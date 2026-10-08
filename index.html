@@ -13,7 +13,7 @@
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,"Times New Roman",serif;overflow-x:hidden}
-body.locked{overflow:hidden}
+body.locked{overflow-y:auto}
 button,input,select{font:inherit}
 .screen{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:72px 0}
 .inner{position:relative;z-index:5;width:min(84vw,430px);margin:auto}
@@ -260,7 +260,7 @@ body{background:linear-gradient(180deg,#f6ebdd,#ead8c0 40%,#f4e8d7 78%,#f0dfc9)}
 /* Mobile layout corrections — keep the original hero shape and typeface. */
 html{scroll-behavior:auto;scroll-padding-top:0}
 html,body{overflow-x:hidden;overflow-y:auto}
-body.locked{overflow:hidden}
+body.locked{overflow-y:auto}
 .portrait-hero{box-sizing:border-box;min-height:100svh;height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(66px,11svh,112px) 12px 38px;gap:12px;overflow:visible}
 .portrait-copy{position:relative;z-index:3;order:0;margin:0 auto;max-width:100%;padding:0 10px;transform:translateY(12px)}
 .portrait-copy .hero-name{line-height:1.14;white-space:normal}
@@ -281,9 +281,38 @@ body.locked{overflow:hidden}
 .arrow{background:#f8eedf;border:1px solid #aa8158;box-shadow:0 3px 10px rgba(0,0,0,.12)}
 @media(max-height:700px){.portrait-hero{padding-top:52px}.portrait-frame{height:min(54svh,540px)}.portrait-copy .hero-name{font-size:clamp(60px,17vw,90px)}}
 
+
+/* iPhone repair: native bidirectional scrolling, no touch interception. */
+html {height:auto!important;overflow-x:clip!important;overflow-y:auto!important;scroll-behavior:auto!important;-webkit-overflow-scrolling:touch}
+body {height:auto!important;min-height:100%;overflow-x:clip!important;overflow-y:visible!important;touch-action:pan-y pinch-zoom}
+body.locked {overflow-y:visible!important}
+#portraitHero,.screen {touch-action:pan-y pinch-zoom}
+.intro.done {pointer-events:none!important}
+/* Center the inserted story photographs using their real aspect ratio. */
+figure.story-photo,figure.story-photo.story-small {
+  position:relative!important;left:auto!important;right:auto!important;
+  display:table!important;box-sizing:border-box!important;
+  width:fit-content!important;max-width:min(82vw,360px)!important;
+  height:auto!important;min-height:0!important;max-height:none!important;
+  margin:32px auto 12px!important;padding:5px!important;
+  border:1px solid #b89569!important;border-radius:16px!important;
+  outline:none!important;background:#fff7eb!important;
+  box-shadow:0 12px 30px rgba(86,55,34,.17)!important;
+  text-align:center!important;
+}
+figure.story-photo img,figure.story-photo.story-small img {
+  display:block!important;width:auto!important;max-width:100%!important;
+  height:auto!important;max-height:440px!important;
+  margin:0 auto!important;object-fit:contain!important;
+  object-position:center!important;transform:none!important;border-radius:10px!important;
+}
+figure.story-photo.reveal {transform:translateY(18px)}
+figure.story-photo.reveal.show {transform:translateY(0)}
+#galleryWindow {touch-action:pan-y pinch-zoom}
+.gallery .photo {touch-action:pan-y pinch-zoom}
 </style>
 </head>
-<body class="locked">
+<body>
 <audio id="backgroundMusic" src="music.mp3" preload="auto" loop playsinline></audio>
 <button id="musicToggle" class="music-toggle" type="button" aria-label="Выключить музыку" aria-pressed="true">♫</button>
 
@@ -409,7 +438,7 @@ function syncMusicVisibility(){
 document.addEventListener('visibilitychange',syncMusicVisibility);
 window.addEventListener('pagehide',()=>{bgMusic.pause();musicWanted=false;updateMusicButton();});
 
-function openInvitation(){if(opened)return;opened=true;musicToggle.classList.add('visible');startMusic();intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");document.getElementById("portraitHero").classList.add("started")},3150)}
+function openInvitation(){if(opened)return;opened=true;musicToggle.classList.add('visible');startMusic();intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");document.getElementById("portraitHero").classList.add("started");setTimeout(()=>{intro.style.display="none"},850)},3150)}
 enter.addEventListener("click",e=>{e.preventDefault();openInvitation()});intro.addEventListener("click",()=>{if(!opened)openInvitation()});
 
 
@@ -424,7 +453,7 @@ function tick(){let x=Math.max(0,target-Date.now());days.textContent=Math.floor(
 const gallery=document.getElementById("gallery"),gw=document.getElementById("galleryWindow"),counter=document.getElementById("counter");let p=0,total=gallery.children.length;
 function move(){gallery.style.transform=`translateX(-${p*100}%)`;counter.textContent=`${p+1} / ${total}`}
 next.onclick=()=>{p=(p+1)%total;move()};prev.onclick=()=>{p=(p-1+total)%total;move()};
-let sx=0;gw.addEventListener("touchstart",e=>sx=e.changedTouches[0].screenX,{passive:true});gw.addEventListener("touchend",e=>{let d=sx-e.changedTouches[0].screenX;if(Math.abs(d)<45)return;p=d>0?(p+1)%total:(p-1+total)%total;move()},{passive:true});
+let sx=0,sy=0;gw.addEventListener("touchstart",e=>{sx=e.changedTouches[0].screenX;sy=e.changedTouches[0].screenY},{passive:true});gw.addEventListener("touchend",e=>{let d=sx-e.changedTouches[0].screenX,dy=sy-e.changedTouches[0].screenY;if(Math.abs(d)<45||Math.abs(d)<Math.abs(dy)*1.25)return;p=d>0?(p+1)%total:(p-1+total)%total;move()},{passive:true});
 // RSVP: Google Sheets endpoint. All other site functionality remains unchanged.
 const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxvH0_tyCfcq7mze6KlaTSmdOVH_3cXFXhq81Ccvz5FvvRe2IzQyzYKXHNZu-yZkTY/exec";
 const rsvpButton = form.querySelector('button[type="submit"], button.submit');
