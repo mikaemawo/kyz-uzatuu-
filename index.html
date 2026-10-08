@@ -642,6 +642,72 @@ figure.story-photo.reveal.show {transform:translateY(0)}
   }
 }
 
+
+/* ===== HERO CALLIGRAPHY — closer to the reference ===== */
+.portrait-copy .hero-name{
+  position:relative!important;
+  display:inline-flex!important;
+  align-items:baseline!important;
+  justify-content:center!important;
+  font-family:"Snell Roundhand","Apple Chancery","Marck Script",cursive!important;
+  font-size:clamp(78px,21vw,118px)!important;
+  font-weight:400!important;
+  font-style:normal!important;
+  line-height:.95!important;
+  letter-spacing:-.045em!important;
+  color:#70472c!important;
+  text-shadow:0 2px 12px rgba(255,248,236,.72)!important;
+}
+
+/* Remove the previous little ornaments — they looked too decorative. */
+.portrait-copy .hero-name::before,
+.portrait-copy .hero-name::after{
+  content:none!important;
+}
+
+.hero-initial{
+  display:inline-block;
+  font-size:1.23em;
+  line-height:.78;
+  margin-right:-.08em;
+  transform:translateY(.03em) rotate(-4deg);
+  transform-origin:70% 70%;
+}
+
+.hero-rest{
+  display:inline-block;
+  transform:translateY(.02em);
+}
+
+/* A thin sweeping flourish, like the long calligraphic stroke in the reference. */
+.portrait-copy .hero-name{
+  padding:0 .12em .08em!important;
+}
+.portrait-copy .hero-name .hero-rest{
+  position:relative;
+}
+.portrait-copy .hero-name .hero-rest::after{
+  content:"";
+  position:absolute;
+  left:-.55em;
+  bottom:-.12em;
+  width:2.9em;
+  height:.34em;
+  border-bottom:1.4px solid rgba(128,82,48,.58);
+  border-radius:0 0 75% 45%;
+  transform:rotate(-5deg);
+  pointer-events:none;
+}
+
+/* Keep the subtitle refined and close to the reference. */
+.portrait-copy .hero-sub{
+  font-family:"Cormorant Garamond","Times New Roman",Georgia,serif!important;
+  font-size:clamp(21px,5.2vw,30px)!important;
+  font-weight:500!important;
+  letter-spacing:.16em!important;
+  color:#795137!important;
+}
+
 </style>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Poiret+One&display=swap');
@@ -665,7 +731,7 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 
 
 <section class="screen portrait-hero" id="portraitHero">
- <div class="portrait-copy"><h1 class="script hero-name">Нургул</h1><div class="hero-sub">КЫЗ УЗАТУУ</div></div>
+ <div class="portrait-copy"><h1 class="script hero-name"><span class="hero-initial">Н</span><span class="hero-rest">ургул</span></h1><div class="hero-sub">КЫЗ УЗАТУУ</div></div>
  <div class="portrait-frame"><img src="nurgul-hero.jpg" alt="Нургул" fetchpriority="high"></div>
  <div class="portrait-scroll">↓ &nbsp; ТӨМӨН ЖЫЛДЫРЫҢЫЗ</div>
 </section>
