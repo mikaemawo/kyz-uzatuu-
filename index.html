@@ -713,6 +713,19 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 @import url('https://fonts.googleapis.com/css2?family=Marck+Script&family=Poiret+One&display=swap');
 </style>
 
+
+<!-- Reference-inspired formal calligraphy for the first screen -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.portrait-copy .hero-name{font-family:"Great Vibes","Snell Roundhand",cursive!important;font-size:clamp(74px,19vw,108px)!important;font-style:normal!important;font-weight:400!important;letter-spacing:-.025em!important;line-height:1.25!important;padding:0 .10em .02em!important;white-space:nowrap!important}
+.portrait-copy .hero-name .hero-initial{font-size:1.12em!important;transform:none!important;margin-right:-.035em!important;line-height:1!important}
+.portrait-copy .hero-name .hero-rest{transform:none!important}
+.portrait-copy .hero-name .hero-rest::after,.portrait-copy .hero-name::before,.portrait-copy .hero-name::after{content:none!important;display:none!important}
+.portrait-copy .hero-sub{font-family:"Cormorant Garamond",Georgia,serif!important;font-size:clamp(25px,5.8vw,33px)!important;font-weight:500!important;letter-spacing:.065em!important;line-height:1.15!important}
+@media(max-width:380px){.portrait-copy .hero-name{font-size:clamp(66px,18vw,90px)!important}}
+</style>
 </head>
 <body>
 <audio id="backgroundMusic" src="music.mp3" preload="auto" loop playsinline></audio>
@@ -883,8 +896,8 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)retur
 document.querySelectorAll(".reveal,#inviteLines,#program,.bg-photo").forEach(x=>obs.observe(x));
 
 
-const target = new Date("2026-10-22T17:00:00+06:00");
- function tick(){let x=Math.max(0,target-Date.now());days.textContent=Math.floor(x/86400000);hours.textContent=String(Math.floor(x/3600000)%24).padStart(2,"0");minutes.textContent=String(Math.floor(x/60000)%60).padStart(2,"0");seconds.textContent=String(Math.floor(x/1000)%60).padStart(2,"0")}tick();setInterval(tick,1000);
+const target=new Date("2027-08-15T17:00:00+06:00");
+function tick(){let x=Math.max(0,target-Date.now());days.textContent=Math.floor(x/86400000);hours.textContent=String(Math.floor(x/3600000)%24).padStart(2,"0");minutes.textContent=String(Math.floor(x/60000)%60).padStart(2,"0");seconds.textContent=String(Math.floor(x/1000)%60).padStart(2,"0")}tick();setInterval(tick,1000);
 
 
 const gallery=document.getElementById("gallery"),gw=document.getElementById("galleryWindow"),counter=document.getElementById("counter");let p=0,total=gallery.children.length;
