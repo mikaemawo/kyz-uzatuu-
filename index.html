@@ -765,6 +765,23 @@ figure.story-photo.reveal.show {transform:translateY(0)}
   font-weight: 400 !important;
 }
 </style>
+<style id="exact-same-font-as-invitation-heading">
+/* Exactly the ORIGINAL font stack of "Урматтуу коноктор!", no replacement font. */
+.portrait-copy .hero-name {
+  font-family: "Snell Roundhand", "Apple Chancery", "URW Chancery L", cursive !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: clamp(56px, 16vw, 92px) !important;
+  letter-spacing: 0 !important;
+  line-height: 1.15 !important;
+  display: block !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+}
+.portrait-copy .hero-name::before,
+.portrait-copy .hero-name::after { content: none !important; display: none !important; }
+</style>
 </head>
 <body>
 <audio id="backgroundMusic" src="music.mp3" preload="auto" loop playsinline></audio>
@@ -783,7 +800,7 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 
 
 <section class="screen portrait-hero" id="portraitHero">
- <div class="portrait-copy"><h1 class="script hero-name"><span class="hero-initial">Н</span><span class="hero-rest">ургул</span></h1><div class="hero-sub">КЫЗ УЗАТУУ</div></div>
+ <div class="portrait-copy"><h1 class="script hero-name">Нургул</h1><div class="hero-sub">КЫЗ УЗАТУУ</div></div>
  <div class="portrait-frame"><img src="nurgul-hero.jpg" alt="Нургул" fetchpriority="high"></div>
  <div class="portrait-scroll">↓ &nbsp; ТӨМӨН ЖЫЛДЫРЫҢЫЗ</div>
 </section>
