@@ -754,20 +754,11 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 @media(max-width:350px){.portrait-copy .hero-name{font-size:clamp(49px,16vw,62px)!important;}}
 @media(min-width:700px){.portrait-copy .hero-name{font-size:105px!important;}}
 </style>
-<style id="matching-invitation-font-fix">
-/* One identical Cyrillic-capable font for both headings on every phone. */
-.invite-bg .script-title,
+<style id="exact-same-font-as-invitation-heading">
+/* Change ONLY Nurgul; preserve original invitation heading. */
 .portrait-copy .hero-name,
 .portrait-copy .hero-name .hero-initial,
 .portrait-copy .hero-name .hero-rest {
-  font-family: "Marck Script", cursive !important;
-  font-style: normal !important;
-  font-weight: 400 !important;
-}
-</style>
-<style id="exact-same-font-as-invitation-heading">
-/* Exactly the ORIGINAL font stack of "Урматтуу коноктор!", no replacement font. */
-.portrait-copy .hero-name {
   font-family: "Snell Roundhand", "Apple Chancery", "URW Chancery L", cursive !important;
   font-style: normal !important;
   font-weight: 400 !important;
