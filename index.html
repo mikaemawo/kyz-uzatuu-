@@ -883,8 +883,8 @@ const obs=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)retur
 document.querySelectorAll(".reveal,#inviteLines,#program,.bg-photo").forEach(x=>obs.observe(x));
 
 
-const target=new Date("2027-08-15T17:00:00+06:00");
-function tick(){let x=Math.max(0,target-Date.now());days.textContent=Math.floor(x/86400000);hours.textContent=String(Math.floor(x/3600000)%24).padStart(2,"0");minutes.textContent=String(Math.floor(x/60000)%60).padStart(2,"0");seconds.textContent=String(Math.floor(x/1000)%60).padStart(2,"0")}tick();setInterval(tick,1000);
+const target = new Date("2026-10-22T17:00:00+06:00");
+ function tick(){let x=Math.max(0,target-Date.now());days.textContent=Math.floor(x/86400000);hours.textContent=String(Math.floor(x/3600000)%24).padStart(2,"0");minutes.textContent=String(Math.floor(x/60000)%60).padStart(2,"0");seconds.textContent=String(Math.floor(x/1000)%60).padStart(2,"0")}tick();setInterval(tick,1000);
 
 
 const gallery=document.getElementById("gallery"),gw=document.getElementById("galleryWindow"),counter=document.getElementById("counter");let p=0,total=gallery.children.length;
