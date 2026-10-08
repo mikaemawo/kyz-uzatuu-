@@ -256,6 +256,31 @@ body{background:linear-gradient(180deg,#f6ebdd,#ead8c0 40%,#f4e8d7 78%,#f0dfc9)}
 .screen.in-view .orn{transform:translateY(0)}
 @media(max-height:680px){.portrait-frame{height:58svh;width:min(82vw,420px)}.portrait-hero{padding-top:22px}.story-photo{height:210px}}
 
+
+/* October mobile usability and photographic layout fixes */
+html,body{overflow-x:clip;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:auto}
+body.locked{overflow-y:auto!important}
+.intro.opening{pointer-events:none}
+.intro.done{display:none}
+.portrait-hero{min-height:100svh;height:auto;overflow:visible;padding:clamp(22px,5svh,46px) 0 32px;gap:12px}
+.portrait-copy{width:100%;padding:0 16px}
+.portrait-copy .hero-name{line-height:1.12;transition:opacity 1.05s ease,transform 1.05s cubic-bezier(.22,.75,.3,1)}
+.portrait-copy .hero-sub{color:#654021;font-weight:600;font-size:clamp(15px,4.3vw,19px);letter-spacing:clamp(3px,1.2vw,6px);text-shadow:0 1px 6px #fff9ed;transition:opacity 1.05s ease,transform 1.05s cubic-bezier(.22,.75,.3,1)}
+.portrait-hero.started .hero-name{transition-delay:.08s}
+.portrait-hero.started .hero-sub{transition-delay:.32s}
+.portrait-frame{width:min(88vw,480px);height:auto;max-height:none;aspect-ratio:auto;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none;outline:0;opacity:0;transform:translateY(15px);transition:opacity 1.1s ease,transform 1.1s ease}
+.portrait-frame img{display:block;width:100%;height:auto;max-height:67svh;object-fit:contain;object-position:center;transform:none!important;border:5px solid #fdf7ed;border-radius:20px;box-shadow:0 0 0 1px #b9976b,0 14px 35px rgba(92,61,35,.18);background:transparent}
+.portrait-frame::after{display:none}
+.portrait-hero.started .portrait-frame{transition-delay:.12s}
+.story-photo,.story-small{display:block;width:min(82vw,360px);height:auto;max-height:none;margin:32px auto 0;padding:5px;overflow:visible;aspect-ratio:auto;border:1px solid #bc9869;outline:0;border-radius:19px;background:#fff9ef;box-shadow:0 12px 32px rgba(86,56,31,.16)}
+.story-photo img,.story-small img{display:block;width:100%;height:auto;max-height:unset;object-fit:contain;object-position:center;border-radius:13px;transform:none!important}
+.story-photo.show img{transform:none!important}
+.gallery-window{border-radius:19px;border:1px solid #b9976b;box-shadow:0 8px 24px rgba(83,57,36,.12)}
+.photo{aspect-ratio:auto;min-height:340px;background:#f4e7d6}
+.photo img{height:auto;max-height:72svh;width:100%;object-fit:contain;align-self:center}
+.controls .arrow{touch-action:manipulation}
+@media(max-height:680px){.portrait-hero{padding:20px 0 30px}.portrait-frame{width:min(82vw,420px);height:auto}.portrait-frame img{max-height:61svh}.story-photo,.story-small{height:auto}}
+
 </style>
 </head>
 <body class="locked">
@@ -383,7 +408,21 @@ function syncMusicVisibility(){
 document.addEventListener('visibilitychange',syncMusicVisibility);
 window.addEventListener('pagehide',()=>bgMusic.pause());
 window.addEventListener('pageshow',syncMusicVisibility);
-function openInvitation(){if(opened)return;opened=true;musicToggle.classList.add('visible');startMusic();intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");window.scrollTo(0,0);document.getElementById("portraitHero").classList.add("started")},3150)}
+function openInvitation(){
+ if(opened)return;
+ opened=true;
+ // Unlock scrolling immediately, not after animation timers (which Safari may suspend).
+ document.body.classList.remove('locked');
+ document.documentElement.style.overflowY='auto';
+ document.body.style.overflowY='auto';
+ musicToggle.classList.add('visible');startMusic();
+ intro.classList.add('opening');
+ setTimeout(()=>intro.classList.add('zoom'),420);
+ setTimeout(()=>intro.classList.add('flashing'),1400);
+ setTimeout(()=>{intro.classList.add('done');document.getElementById('portraitHero').classList.add('started')},1950);
+ // Fallback if Safari restores a cached page or delays animation.
+ setTimeout(()=>{document.body.classList.remove('locked');intro.classList.add('done');document.getElementById('portraitHero').classList.add('started')},2600);
+}
 enter.addEventListener("click",e=>{e.preventDefault();openInvitation()});intro.addEventListener("click",()=>{if(!opened)openInvitation()});
 
 
@@ -413,7 +452,7 @@ form.addEventListener("submit",e=>{
  window.location.href=url;
 });
 // Restore the opening sequence on reload and when returning via browser history.
-window.addEventListener('pageshow',event=>{if(event.persisted){window.location.reload()}});
+window.addEventListener('pageshow',event=>{document.body.classList.remove('locked');if(event.persisted){intro.classList.add('done');document.getElementById('portraitHero').classList.add('started');opened=true;}});
 // Replay section reveals on each new visit, rather than keeping a previous visual state.
 window.addEventListener('pagehide',()=>{document.querySelectorAll('.reveal.show').forEach(el=>el.classList.remove('show'))});
 </script>
