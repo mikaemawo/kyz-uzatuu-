@@ -355,6 +355,46 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 }
 .venue-card .btn:active{transform:translateY(1px);box-shadow:0 4px 12px rgba(89,55,29,.18)!important}
 
+
+/* HERO PHOTO SIZE FIX — the visible frame now matches the photo exactly. */
+.portrait-frame{
+  display:inline-block!important;
+  width:auto!important;
+  max-width:none!important;
+  height:auto!important;
+  margin:8px auto 0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  line-height:0!important;
+}
+.portrait-frame img{
+  display:block!important;
+  width:min(82vw,405px)!important;
+  max-width:82vw!important;
+  height:auto!important;
+  max-height:none!important;
+  margin:0!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  border:1px solid rgba(165,124,79,.28)!important;
+  border-radius:22px!important;
+  box-shadow:0 12px 30px rgba(103,67,35,.15)!important;
+  background:transparent!important;
+}
+.portrait-hero.photo-ready .portrait-frame{
+  opacity:1!important;
+  transform:none!important;
+  transition:opacity .7s ease,transform .75s cubic-bezier(.2,.7,.2,1)!important;
+  transition-delay:0s!important;
+}
+@media(max-height:700px){
+  .portrait-frame img{width:min(75vw,355px)!important;max-width:75vw!important;}
+}
+
 </style>
 </head>
 <body>
@@ -499,7 +539,26 @@ document.addEventListener('visibilitychange',()=>{
 });
 window.addEventListener('pagehide',stopMusic);
 
-function openInvitation(){if(opened)return;opened=true;musicToggle.classList.add('visible');startMusic();intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");setTimeout(()=>{intro.style.display="none";document.getElementById("portraitHero").classList.add("started")},850)},3150)}
+function openInvitation(){
+  if(opened)return;
+  opened=true;
+  musicToggle.classList.add('visible');
+  startMusic();
+  intro.classList.add("opening");
+  setTimeout(()=>intro.classList.add("zoom"),900);
+  setTimeout(()=>{
+    intro.classList.add("flashing");
+    document.getElementById("portraitHero").classList.add("photo-ready");
+  },2350);
+  setTimeout(()=>{
+    intro.classList.add("done");
+    document.body.classList.remove("locked");
+    setTimeout(()=>{
+      intro.style.display="none";
+      document.getElementById("portraitHero").classList.add("started");
+    },140);
+  },3150);
+}
 enter.addEventListener("click",e=>{e.preventDefault();openInvitation()});intro.addEventListener("click",()=>{if(!opened)openInvitation()});
 
 
