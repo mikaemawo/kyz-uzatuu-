@@ -224,6 +224,38 @@ body{background:#f4e8d7;background-image:linear-gradient(180deg,#f4e8d7,#f1e1ce 
 /* Music controls */
 .music-toggle{position:fixed;right:16px;top:calc(16px + env(safe-area-inset-top));z-index:1001;width:46px;height:46px;border:1px solid rgba(173,131,87,.65);border-radius:50%;background:rgba(251,243,231,.88);color:#785534;box-shadow:0 5px 24px rgba(70,46,27,.15);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;cursor:pointer;font-size:22px}
 .music-toggle.visible{display:flex}
+
+/* 2026 refined visual direction: retain original hero lettering */
+html{background:#f2e6d5}
+body{background:linear-gradient(180deg,#f6ebdd,#ead8c0 40%,#f4e8d7 78%,#f0dfc9)}
+.screen.bg-photo::before{inset:-12% 0;opacity:.68;-webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 22%,#000 76%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0%,#000 22%,#000 76%,transparent 100%)}
+.screen.bg-photo::after{background:linear-gradient(180deg,#f1e3d0 0%,rgba(241,227,208,.22) 19%,transparent 40%,transparent 67%,rgba(241,227,208,.25) 84%,#f1e3d0 100%)}
+.screen.bg-photo{margin-top:-2px;margin-bottom:-2px}
+.screen.bg-photo .inner{position:relative}
+.portrait-hero{padding-top:40px;padding-bottom:28px;gap:9px}
+.portrait-copy .hero-name,.portrait-copy .hero-sub{transition-duration:.68s}
+.portrait-hero.started .hero-name{transition-delay:.18s}
+.portrait-hero.started .hero-sub{transition-delay:.47s}
+.portrait-frame{width:min(92vw,560px);height:min(70svh,780px);border:3px solid rgba(248,236,216,.85);border-radius:45% 45% 10px 10px / 10% 10% 10px 10px;box-shadow:0 0 0 1px rgba(155,109,63,.28),0 17px 40px rgba(100,65,34,.15);background:#e9d6bb;transition-duration:.75s}
+.portrait-frame img{object-fit:contain;object-position:center;transform:scale(1.02);background:#e9d6bb}
+.portrait-hero.started .portrait-frame img{transform:scale(1)}
+.portrait-frame::after{box-shadow:inset 0 0 25px rgba(108,73,40,.14);border-radius:inherit}
+.portrait-scroll{transition-delay:1.1s}
+.invite-bg .script-title{margin-bottom:34px!important}
+.invite-bg .lines{font-size:clamp(18px,4.8vw,23px)!important;line-height:1.85!important;max-width:560px;margin:0 auto!important}
+.invite-bg .lines span{display:block;margin-bottom:22px}
+.invite-bg .lines span:last-child{font-style:italic;color:#926b45}
+.story-photo{width:min(74vw,310px);height:clamp(190px,32svh,300px);margin:34px auto 0;position:relative;overflow:hidden;border-radius:130px 130px 10px 10px;border:3px solid rgba(255,249,236,.8);outline:1px solid rgba(164,121,72,.35);box-shadow:0 14px 30px rgba(89,61,38,.18)}
+.story-photo img{width:100%;height:100%;object-fit:cover;object-position:center 27%;display:block;transition:transform 1.8s ease}
+.story-photo.show img{transform:scale(1.045)}
+.story-small{width:min(60vw,235px);height:clamp(170px,25svh,245px)}
+.arrow{width:55px!important;height:55px!important;border-radius:50%!important;background:#8b643f!important;color:#fff9ef!important;font-size:27px!important;box-shadow:0 6px 18px rgba(66,44,26,.2)!important;border:1px solid #e8cda3!important}
+.closing-wish{font-size:clamp(17px,4.6vw,22px);line-height:1.7;margin:26px auto 0;max-width:340px}
+.closing-flourish{font-size:26px;color:#a47d53;margin-top:18px}
+.orn{transition:opacity 1.3s ease,transform 1.8s ease;transform:translateY(12px)}
+.screen.in-view .orn{transform:translateY(0)}
+@media(max-height:680px){.portrait-frame{height:58svh;width:min(82vw,420px)}.portrait-hero{padding-top:22px}.story-photo{height:210px}}
+
 </style>
 </head>
 <body class="locked">
@@ -250,12 +282,12 @@ body{background:#f4e8d7;background-image:linear-gradient(180deg,#f4e8d7,#f1e1ce 
 
 
 <section class="screen bg-photo bg2 decorated mountains-sec invite-bg">
- <div class="inner paper"><h2 class="script script-title reveal">Урматтуу<br>коноктор!</h2><p class="copy lines" id="inviteLines"><span>Сиздерди кызыбыз Нургулдун</span><span>кыз узатуу тоюна арналган</span><span>ак дасторконубуздун кадырлуу</span><span>коногу болууга чакырабыз.</span></p></div>
+ <div class="inner paper"><h2 class="script script-title reveal">Урматтуу<br>коноктор!</h2><p class="copy lines" id="inviteLines"><span>Сиздерди кызыбыз Нургулдун өмүрүндөгү эң өзгөчө күндөрдүн бири — кыз узатуу тоюна чын жүрөктөн чакырабыз.</span><span>Бул кубанычтуу күнүбүздө биз менен бирге болуп, ак батаңызды берип, жакшы тилектериңиздер менен бөлүшсөңүздөр, биз үчүн чоң бакыт!</span><span>Сиздерди терең урматтоо менен күтөбүз!</span></p></div>
 </section>
 
 
 <section class="screen bg-photo bg3 decorated mountains-sec">
- <div class="inner paper"><div class="smallcaps reveal">ТОЙ КҮНҮ</div><div class="bigdate reveal">15 · 08 · 2027</div><div class="smallcaps reveal">ЖЕКШЕМБИ · 17:00</div></div>
+ <div class="inner paper"><div class="smallcaps reveal">ТОЙ КҮНҮ</div><div class="bigdate reveal">15 · 08 · 2027</div><div class="smallcaps reveal">ЖЕКШЕМБИ · 17:00</div><figure class="story-photo reveal"><img src="gallery-4.jpg" loading="lazy" alt="Нургул — той күнү"></figure></div>
 </section>
 
 
@@ -266,12 +298,12 @@ body{background:#f4e8d7;background-image:linear-gradient(180deg,#f4e8d7,#f1e1ce 
 
 
 <section class="screen bg-photo bg5 decorated">
- <div class="inner paper"><h2 class="title reveal from-right">ӨТКӨРҮЛӨ ТУРГАН ЖЕРИ</h2><div class="venue-card reveal"><p class="copy"><b>АЛА-ТОО РЕСТОРАНЫ</b><br>Бишкек шаары<br>Ала-Арча жолу, 12</p><a class="btn" href="#">КАРТАНЫ АЧУУ →</a></div></div>
+ <div class="inner paper"><h2 class="title reveal from-right">ӨТКӨРҮЛӨ ТУРГАН ЖЕРИ</h2><div class="venue-card reveal"><p class="copy"><b>UNO РЕСТОРАНЫ</b><br>Бишкек шаары</p><a class="btn" href="https://2gis.kg/bishkek/geo/70000001092476183/74.542200,42.833394" target="_blank" rel="noopener noreferrer">КАРТАНЫ АЧУУ →</a></div></div>
 </section>
 
 
 <section class="screen bg-photo bg6 decorated mountains-sec">
- <div class="inner paper"><h2 class="title reveal">ТОЙДУН ЭЭЛЕРИ</h2><div class="script host-name reveal">Азамат<br>&amp;<br>Айгүл</div></div>
+ <div class="inner paper"><h2 class="title reveal">ТОЙДУН ЭЭЛЕРИ</h2><div class="script host-name reveal">Азамат<br>&amp;<br>Айгүл</div><figure class="story-photo story-small reveal"><img src="gallery-1.jpg" loading="lazy" alt="Нургул"></figure></div>
 </section>
 
 
@@ -292,7 +324,7 @@ body{background:#f4e8d7;background-image:linear-gradient(180deg,#f4e8d7,#f1e1ce 
 
 
 <section class="screen bg-photo bg4 decorated">
- <div class="inner paper"><h2 class="script script-title reveal">Нургул</h2><div class="gallery-window reveal" id="galleryWindow"><div class="gallery" id="gallery"><div class="photo"><img src="portrait-1.png" alt="Нургул — сүрөт 1" loading="lazy"></div><div class="photo"><img src="gallery-4.jpg" alt="Нургул — сүрөт 2" loading="lazy"></div><div class="photo"><img src="nurgul-hero.jpg" alt="Нургул — сүрөт 3" loading="lazy"></div><div class="photo"><img src="gallery-1.jpg" alt="Нургул — сүрөт 4" loading="lazy"></div><div class="photo"><img src="gallery-2.jpg" alt="Нургул — сүрөт 5" loading="lazy"></div><div class="photo"><img src="gallery-3.jpg" alt="Нургул — сүрөт 6" loading="lazy"></div></div></div><div class="controls reveal"><button class="arrow" id="prev">←</button><span id="counter">1 / 6</span><button class="arrow" id="next">→</button></div></div>
+ <div class="inner paper"><div class="smallcaps reveal">ЭСТЕЛИК СҮРӨТТӨР</div><div class="gallery-window reveal" id="galleryWindow"><div class="gallery" id="gallery"><div class="photo"><img src="portrait-1.png" alt="Нургул — сүрөт 1" loading="lazy"></div><div class="photo"><img src="gallery-4.jpg" alt="Нургул — сүрөт 2" loading="lazy"></div><div class="photo"><img src="nurgul-hero.jpg" alt="Нургул — сүрөт 3" loading="lazy"></div><div class="photo"><img src="gallery-1.jpg" alt="Нургул — сүрөт 4" loading="lazy"></div><div class="photo"><img src="gallery-2.jpg" alt="Нургул — сүрөт 5" loading="lazy"></div><div class="photo"><img src="gallery-3.jpg" alt="Нургул — сүрөт 6" loading="lazy"></div></div></div><div class="controls reveal"><button class="arrow" id="prev">←</button><span id="counter">1 / 6</span><button class="arrow" id="next">→</button></div></div>
 </section>
 
 
@@ -302,7 +334,7 @@ body{background:#f4e8d7;background-image:linear-gradient(180deg,#f4e8d7,#f1e1ce 
 
 
 <section class="screen bg-photo bg6 decorated mountains-sec">
- <div class="inner paper"><div class="script final-title reveal">Сиздерди<br>күтөбүз!</div><div class="script final-name reveal">Нургул</div><div class="final-date reveal">КЫЗ УЗАТУУ · 15 · 08 · 2027</div></div>
+ <div class="inner paper"><div class="script final-title reveal">Сиздерди<br>күтөбүз!</div><div class="script final-name reveal">Нургул</div><div class="final-date reveal">КЫЗ УЗАТУУ · 15 · 08 · 2027</div><p class="closing-wish reveal">Ак тилегиңиздер менен кубанычыбызды бөлүшүүгө чакырабыз!</p><figure class="story-photo story-small reveal"><img src="gallery-3.jpg" loading="lazy" alt="Нургул"></figure><div class="closing-flourish reveal">✧ ❦ ✧</div></div>
 </section>
 
 
@@ -325,8 +357,32 @@ const intro=document.getElementById("intro"),enter=document.getElementById("ente
 const bgMusic=document.getElementById('backgroundMusic');
 const musicToggle=document.getElementById('musicToggle');
 bgMusic.volume=.75;
-function startMusic(){bgMusic.play().then(()=>{musicToggle.textContent='♫';musicToggle.setAttribute('aria-pressed','true')}).catch(()=>{musicToggle.textContent='♪̸';musicToggle.setAttribute('aria-pressed','false')})}
-musicToggle.addEventListener('click',()=>{if(bgMusic.paused){startMusic()}else{bgMusic.pause();musicToggle.textContent='♪̸';musicToggle.setAttribute('aria-pressed','false')}});
+// Remember the guest's preference separately from temporary background pauses.
+let musicWanted=false;
+function updateMusicButton(){
+  musicToggle.textContent=musicWanted?'♫':'♪̸';
+  musicToggle.setAttribute('aria-pressed',String(musicWanted));
+  musicToggle.setAttribute('aria-label',musicWanted?'Выключить музыку':'Включить музыку');
+}
+function startMusic(){
+  musicWanted=true;updateMusicButton();
+  if(document.visibilityState==='hidden')return;
+  bgMusic.play().then(()=>{
+    // A pending play() can finish after the visitor has left the page.
+    if(!musicWanted || document.visibilityState==='hidden')bgMusic.pause();
+  }).catch(()=>{bgMusic.pause();musicWanted=false;updateMusicButton()});
+}
+musicToggle.addEventListener('click',()=>{
+  if(musicWanted){musicWanted=false;bgMusic.pause();updateMusicButton()}
+  else startMusic();
+});
+function syncMusicVisibility(){
+  if(document.visibilityState==='hidden'){bgMusic.pause();return}
+  if(opened && musicWanted)bgMusic.play().catch(()=>{bgMusic.pause();musicWanted=false;updateMusicButton()});
+}
+document.addEventListener('visibilitychange',syncMusicVisibility);
+window.addEventListener('pagehide',()=>bgMusic.pause());
+window.addEventListener('pageshow',syncMusicVisibility);
 function openInvitation(){if(opened)return;opened=true;musicToggle.classList.add('visible');startMusic();intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");window.scrollTo(0,0);document.getElementById("portraitHero").classList.add("started")},3150)}
 enter.addEventListener("click",e=>{e.preventDefault();openInvitation()});intro.addEventListener("click",()=>{if(!opened)openInvitation()});
 
