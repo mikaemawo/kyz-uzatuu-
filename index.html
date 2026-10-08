@@ -310,6 +310,50 @@ figure.story-photo.reveal {transform:translateY(18px)}
 figure.story-photo.reveal.show {transform:translateY(0)}
 #galleryWindow {touch-action:pan-y pinch-zoom}
 .gallery .photo {touch-action:pan-y pinch-zoom}
+
+/* 2026-10: first-screen-only visual refinement; no changes to scrolling or RSVP. */
+#portraitHero.portrait-hero {gap:clamp(12px,2svh,22px);padding-top:clamp(40px,7svh,75px);padding-bottom:28px;}
+#portraitHero .portrait-copy {transform:none;margin:0 auto;padding:0 16px;}
+#portraitHero .portrait-copy .hero-name {font-size:clamp(65px,18vw,105px);line-height:1.15;}
+#portraitHero .portrait-copy .hero-sub {
+ font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+ font-size:clamp(19px,5vw,26px);font-weight:400;
+ letter-spacing:clamp(2px,.9vw,5px);line-height:1.35;
+ color:#76502d;text-shadow:0 1px 1px rgba(255,250,241,.9);
+ margin-top:10px;
+}
+#portraitHero .portrait-frame {
+ width:min(88vw,480px);height:auto;max-height:none;aspect-ratio:auto;
+ margin:2px auto 0;padding:5px;
+ border:1px solid rgba(171,125,72,.55);border-radius:2px;
+ background:rgba(255,249,238,.7);
+ box-shadow:0 12px 34px rgba(94,60,33,.12),0 0 0 5px rgba(255,250,242,.5);
+ overflow:visible;
+ transition:opacity 1.6s ease, transform 1.8s ease;
+}
+#portraitHero .portrait-frame img {
+ width:100%;height:auto;max-height:min(62svh,690px);
+ object-fit:contain;object-position:center;
+ display:block;background:transparent;transform:none!important;
+}
+#portraitHero .portrait-frame::after {display:none;}
+#portraitHero .portrait-copy .hero-name,
+#portraitHero .portrait-copy .hero-sub {
+ opacity:0;transform:translateY(14px);
+ transition:opacity 1.8s cubic-bezier(.22,1,.36,1),transform 1.8s cubic-bezier(.22,1,.36,1);
+}
+#portraitHero.started .portrait-copy .hero-name {opacity:1;transform:none;transition-delay:.7s;}
+#portraitHero.started .portrait-copy .hero-sub {opacity:1;transform:none;transition-delay:1.7s;}
+#portraitHero.started .portrait-frame {transition-delay:.08s;}
+@media(max-height:700px) {
+ #portraitHero.portrait-hero {padding-top:28px;gap:8px;}
+ #portraitHero .portrait-frame img {max-height:54svh;}
+ #portraitHero .portrait-copy .hero-name {font-size:clamp(58px,16vw,85px);}
+}
+@media(prefers-reduced-motion:reduce) {
+ #portraitHero .portrait-copy .hero-name,#portraitHero .portrait-copy .hero-sub,#portraitHero .portrait-frame {transition-duration:.01ms!important;transition-delay:0ms!important;}
+}
+
 </style>
 </head>
 <body>
