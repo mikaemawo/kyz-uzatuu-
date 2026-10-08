@@ -344,6 +344,17 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 @media(max-height:700px){.portrait-hero{padding-top:38px!important;gap:6px!important}.portrait-frame{width:min(75vw,355px)!important}.portrait-frame img{max-height:53svh!important}.portrait-copy .hero-name{font-size:clamp(56px,16vw,84px)!important}}
 @media(prefers-reduced-motion:reduce){.portrait-frame,.portrait-copy .hero-name,.portrait-copy .hero-sub,.portrait-scroll{transition-duration:.01ms!important;transition-delay:0s!important}}
 
+
+/* Final venue button: visible, warm-gold, still matching the invitation palette. */
+.venue-card .btn{
+  background:linear-gradient(180deg,#b78652,#94663c)!important;
+  color:#fffaf2!important;
+  border:1px solid #8b5d35!important;
+  box-shadow:0 8px 22px rgba(89,55,29,.22)!important;
+  font-weight:700!important;
+}
+.venue-card .btn:active{transform:translateY(1px);box-shadow:0 4px 12px rgba(89,55,29,.18)!important}
+
 </style>
 </head>
 <body>
@@ -375,7 +386,7 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 
 
 <section class="screen bg-photo bg3 decorated mountains-sec">
- <div class="inner paper"><div class="smallcaps reveal">ТОЙ КҮНҮ</div><div class="bigdate reveal">15 · 08 · 2027</div><div class="smallcaps reveal">ЖЕКШЕМБИ · 17:00</div><figure class="story-photo reveal"><img src="gallery-4.jpg" loading="lazy" alt="Нургул — той күнү"></figure></div>
+ <div class="inner paper"><div class="smallcaps reveal">ТОЙ КҮНҮ</div><div class="bigdate reveal">15 · 08 · 2027</div><div class="smallcaps reveal">ЖЕКШЕМБИ · 17:00</div><figure class="story-photo reveal"><img src="story-date.jpg" loading="lazy" alt="Нургул — той күнү"></figure></div>
 </section>
 
 
@@ -391,7 +402,7 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 
 
 <section class="screen bg-photo bg6 decorated mountains-sec">
- <div class="inner paper"><h2 class="title reveal">ТОЙДУН ЭЭЛЕРИ</h2><div class="script host-name reveal">Азамат<br>&amp;<br>Айгүл</div><figure class="story-photo story-small reveal"><img src="gallery-1.jpg" loading="lazy" alt="Нургул"></figure></div>
+ <div class="inner paper"><h2 class="title reveal">ТОЙДУН ЭЭЛЕРИ</h2><div class="script host-name reveal">Азамат<br>&amp;<br>Айгүл</div><figure class="story-photo story-small reveal"><img src="story-hosts.jpg" loading="lazy" alt="Нургул"></figure></div>
 </section>
 
 
@@ -412,7 +423,11 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 
 
 <section class="screen bg-photo bg4 decorated">
- <div class="inner paper"><div class="smallcaps reveal">ЭСТЕЛИК СҮРӨТТӨР</div><div class="gallery-window reveal" id="galleryWindow"><div class="gallery" id="gallery"><div class="photo"><img src="portrait-1.png" alt="Нургул — сүрөт 1" loading="lazy"></div><div class="photo"><img src="gallery-4.jpg" alt="Нургул — сүрөт 2" loading="lazy"></div><div class="photo"><img src="nurgul-hero.jpg" alt="Нургул — сүрөт 3" loading="lazy"></div><div class="photo"><img src="gallery-1.jpg" alt="Нургул — сүрөт 4" loading="lazy"></div><div class="photo"><img src="gallery-2.jpg" alt="Нургул — сүрөт 5" loading="lazy"></div><div class="photo"><img src="gallery-3.jpg" alt="Нургул — сүрөт 6" loading="lazy"></div></div></div><div class="controls reveal"><button class="arrow" id="prev">←</button><span id="counter">1 / 6</span><button class="arrow" id="next">→</button></div></div>
+ <div class="inner paper"><div class="smallcaps reveal">ЭСТЕЛИК СҮРӨТТӨР</div><div class="gallery-window reveal" id="galleryWindow"><div class="gallery" id="gallery">
+<div class="photo"><img src="card-1.jpg" alt="Нургул — сүрөт 1" loading="lazy"></div>
+<div class="photo"><img src="card-2.jpg" alt="Нургул — сүрөт 2" loading="lazy"></div>
+<div class="photo"><img src="card-3.jpg" alt="Нургул — сүрөт 3" loading="lazy"></div>
+</div></div><div class="controls reveal"><button class="arrow" id="prev">←</button><span id="counter">1 / 3</span><button class="arrow" id="next">→</button></div></div>
 </section>
 
 
@@ -422,7 +437,7 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 
 
 <section class="screen bg-photo bg6 decorated mountains-sec">
- <div class="inner paper"><div class="script final-title reveal">Сиздерди<br>күтөбүз!</div><div class="script final-name reveal">Нургул</div><div class="final-date reveal">КЫЗ УЗАТУУ · 15 · 08 · 2027</div><p class="closing-wish reveal">Ак тилегиңиздер менен кубанычыбызды бөлүшүүгө чакырабыз!</p><figure class="story-photo story-small reveal"><img src="gallery-3.jpg" loading="lazy" alt="Нургул"></figure><div class="closing-flourish reveal">✧ ❦ ✧</div></div>
+ <div class="inner paper"><div class="script final-title reveal">Сиздерди<br>күтөбүз!</div><div class="script final-name reveal">Нургул</div><div class="final-date reveal">КЫЗ УЗАТУУ · 15 · 08 · 2027</div><p class="closing-wish reveal">Ак тилегиңиздер менен кубанычыбызды бөлүшүүгө чакырабыз!</p><figure class="story-photo story-small reveal"><img src="story-final.jpg" loading="lazy" alt="Нургул"></figure><div class="closing-flourish reveal">✧ ❦ ✧</div></div>
 </section>
 
 
@@ -447,30 +462,42 @@ const intro=document.getElementById("intro"),enter=document.getElementById("ente
 const bgMusic=document.getElementById('backgroundMusic');
 const musicToggle=document.getElementById('musicToggle');
 bgMusic.volume=.75;
-// Remember the guest's preference separately from temporary background pauses.
 let musicWanted=false;
+
 function updateMusicButton(){
   musicToggle.textContent=musicWanted?'♫':'♪̸';
   musicToggle.setAttribute('aria-pressed',String(musicWanted));
   musicToggle.setAttribute('aria-label',musicWanted?'Выключить музыку':'Включить музыку');
 }
+
 function startMusic(){
-  musicWanted=true;updateMusicButton();
-  if(document.visibilityState==='hidden')return;
-  bgMusic.play().then(()=>{
-    // A pending play() can finish after the visitor has left the page.
-    if(!musicWanted || document.visibilityState==='hidden')bgMusic.pause();
-  }).catch(()=>{bgMusic.pause();musicWanted=false;updateMusicButton()});
+  musicWanted=true;
+  updateMusicButton();
+  const playPromise=bgMusic.play();
+  if(playPromise && typeof playPromise.catch==='function'){
+    playPromise.catch(()=>{
+      musicWanted=false;
+      bgMusic.pause();
+      updateMusicButton();
+    });
+  }
 }
+
+function stopMusic(){
+  musicWanted=false;
+  bgMusic.pause();
+  updateMusicButton();
+}
+
 musicToggle.addEventListener('click',()=>{
-  if(musicWanted){musicWanted=false;bgMusic.pause();updateMusicButton()}
+  if(musicWanted && !bgMusic.paused) stopMusic();
   else startMusic();
 });
-function syncMusicVisibility(){
-  if(document.visibilityState==='hidden'){bgMusic.pause();musicWanted=false;updateMusicButton();}
-}
-document.addEventListener('visibilitychange',syncMusicVisibility);
-window.addEventListener('pagehide',()=>{bgMusic.pause();musicWanted=false;updateMusicButton();});
+
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='hidden') stopMusic();
+});
+window.addEventListener('pagehide',stopMusic);
 
 function openInvitation(){if(opened)return;opened=true;musicToggle.classList.add('visible');startMusic();intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");setTimeout(()=>{intro.style.display="none";document.getElementById("portraitHero").classList.add("started")},850)},3150)}
 enter.addEventListener("click",e=>{e.preventDefault();openInvitation()});intro.addEventListener("click",()=>{if(!opened)openInvitation()});
