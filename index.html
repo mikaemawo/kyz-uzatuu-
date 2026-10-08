@@ -327,6 +327,23 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 .portrait-hero.started .portrait-scroll{opacity:1!important;transition-delay:3.8s!important}
 @media(max-height:700px){.portrait-hero{padding-top:52px!important}.portrait-frame img{max-height:57svh!important}.portrait-copy .hero-name{font-size:clamp(60px,17vw,90px)!important}}
 @media(prefers-reduced-motion:reduce){.portrait-frame,.portrait-copy .hero-name,.portrait-copy .hero-sub,.portrait-scroll{transition-duration:.01ms!important;transition-delay:0s!important}}
+
+/* HERO FIX — simple rounded portrait, balanced spacing, responsive timing */
+.portrait-hero{min-height:100svh!important;height:auto!important;padding:clamp(58px,8svh,90px) 16px 32px!important;gap:12px!important;justify-content:center!important;align-items:center!important;overflow:visible!important}
+.portrait-copy{order:0!important;margin:0 auto!important;transform:none!important;padding:0 8px!important;width:100%!important}
+.portrait-copy .hero-name{font-size:clamp(65px,18vw,98px)!important;line-height:1.1!important;transition:opacity 1.05s ease,transform 1.1s ease!important;transform:translateY(14px)!important}
+.portrait-copy .hero-sub{font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(20px,5vw,29px)!important;font-weight:400!important;letter-spacing:.16em!important;line-height:1.35!important;margin-top:5px!important;transition:opacity 1.05s ease,transform 1.1s ease!important;transform:translateY(12px)!important}
+.portrait-frame{order:1!important;box-sizing:border-box!important;width:min(82vw,405px)!important;height:auto!important;max-height:none!important;aspect-ratio:auto!important;margin:8px auto 0!important;padding:0!important;border:0!important;border-radius:24px!important;overflow:hidden!important;background:transparent!important;box-shadow:0 12px 30px rgba(103,67,35,.15)!important;transform:translateY(12px)!important;transition:opacity 1.1s ease,transform 1.1s ease!important}
+.portrait-frame img{display:block!important;width:100%!important;height:auto!important;max-height:min(58svh,660px)!important;object-fit:contain!important;object-position:center!important;border:0!important;border-radius:24px!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important;filter:none!important;background:transparent!important}
+.portrait-frame::after{display:none!important}
+.portrait-scroll{margin:2px auto 0!important;transition:opacity .9s ease!important}
+.portrait-hero.started .portrait-frame{opacity:1!important;transform:none!important;transition-delay:.12s!important}
+.portrait-hero.started .hero-name{opacity:1!important;transform:none!important;transition-delay:.45s!important}
+.portrait-hero.started .hero-sub{opacity:1!important;transform:none!important;transition-delay:.9s!important}
+.portrait-hero.started .portrait-scroll{opacity:1!important;transition-delay:1.45s!important}
+@media(max-height:700px){.portrait-hero{padding-top:38px!important;gap:6px!important}.portrait-frame{width:min(75vw,355px)!important}.portrait-frame img{max-height:53svh!important}.portrait-copy .hero-name{font-size:clamp(56px,16vw,84px)!important}}
+@media(prefers-reduced-motion:reduce){.portrait-frame,.portrait-copy .hero-name,.portrait-copy .hero-sub,.portrait-scroll{transition-duration:.01ms!important;transition-delay:0s!important}}
+
 </style>
 </head>
 <body>
