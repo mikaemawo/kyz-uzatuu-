@@ -257,29 +257,29 @@ body{background:linear-gradient(180deg,#f6ebdd,#ead8c0 40%,#f4e8d7 78%,#f0dfc9)}
 @media(max-height:680px){.portrait-frame{height:58svh;width:min(82vw,420px)}.portrait-hero{padding-top:22px}.story-photo{height:210px}}
 
 
-/* October mobile usability and photographic layout fixes */
-html,body{overflow-x:clip;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:auto}
-body.locked{overflow-y:auto!important}
-.intro.opening{pointer-events:none}
-.intro.done{display:none}
-.portrait-hero{min-height:100svh;height:auto;overflow:visible;padding:clamp(22px,5svh,46px) 0 32px;gap:12px}
-.portrait-copy{width:100%;padding:0 16px}
-.portrait-copy .hero-name{line-height:1.12;transition:opacity 1.05s ease,transform 1.05s cubic-bezier(.22,.75,.3,1)}
-.portrait-copy .hero-sub{color:#654021;font-weight:600;font-size:clamp(15px,4.3vw,19px);letter-spacing:clamp(3px,1.2vw,6px);text-shadow:0 1px 6px #fff9ed;transition:opacity 1.05s ease,transform 1.05s cubic-bezier(.22,.75,.3,1)}
-.portrait-hero.started .hero-name{transition-delay:.08s}
-.portrait-hero.started .hero-sub{transition-delay:.32s}
-.portrait-frame{width:min(88vw,480px);height:auto;max-height:none;aspect-ratio:auto;overflow:visible;border:0;border-radius:0;background:transparent;box-shadow:none;outline:0;opacity:0;transform:translateY(15px);transition:opacity 1.1s ease,transform 1.1s ease}
-.portrait-frame img{display:block;width:100%;height:auto;max-height:67svh;object-fit:contain;object-position:center;transform:none!important;border:5px solid #fdf7ed;border-radius:20px;box-shadow:0 0 0 1px #b9976b,0 14px 35px rgba(92,61,35,.18);background:transparent}
-.portrait-frame::after{display:none}
-.portrait-hero.started .portrait-frame{transition-delay:.12s}
-.story-photo,.story-small{display:block;width:min(82vw,360px);height:auto;max-height:none;margin:32px auto 0;padding:5px;overflow:visible;aspect-ratio:auto;border:1px solid #bc9869;outline:0;border-radius:19px;background:#fff9ef;box-shadow:0 12px 32px rgba(86,56,31,.16)}
-.story-photo img,.story-small img{display:block;width:100%;height:auto;max-height:unset;object-fit:contain;object-position:center;border-radius:13px;transform:none!important}
-.story-photo.show img{transform:none!important}
-.gallery-window{border-radius:19px;border:1px solid #b9976b;box-shadow:0 8px 24px rgba(83,57,36,.12)}
-.photo{aspect-ratio:auto;min-height:340px;background:#f4e7d6}
-.photo img{height:auto;max-height:72svh;width:100%;object-fit:contain;align-self:center}
-.controls .arrow{touch-action:manipulation}
-@media(max-height:680px){.portrait-hero{padding:20px 0 30px}.portrait-frame{width:min(82vw,420px);height:auto}.portrait-frame img{max-height:61svh}.story-photo,.story-small{height:auto}}
+/* Mobile layout corrections — keep the original hero shape and typeface. */
+html{scroll-behavior:auto;scroll-padding-top:0}
+html,body{overflow-x:hidden;overflow-y:auto}
+body.locked{overflow:hidden}
+.portrait-hero{box-sizing:border-box;min-height:100svh;height:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(66px,11svh,112px) 12px 38px;gap:12px;overflow:visible}
+.portrait-copy{position:relative;z-index:3;order:0;margin:0 auto;max-width:100%;padding:0 10px;transform:translateY(12px)}
+.portrait-copy .hero-name{line-height:1.14;white-space:normal}
+.portrait-copy .hero-sub{font-size:clamp(17px,4.4vw,21px);font-weight:700;letter-spacing:clamp(3px,1vw,5px);color:#563719;text-shadow:0 1px 4px rgba(255,251,238,.9);margin-top:8px}
+.portrait-frame{flex:none;order:1;margin:8px auto 0;width:min(91vw,460px);height:min(61svh,620px);border-radius:155px 155px 14px 14px;overflow:hidden}
+.portrait-frame img{display:block;width:100%;height:100%;object-fit:contain;object-position:center center;transform:none!important;background:#ead8c0}
+.portrait-scroll{order:2;margin:8px auto 0;text-align:center}
+/* Photo blocks keep native proportions and align centrally. */
+.story-photo,.story-photo.story-small{box-sizing:border-box;width:min(82vw,390px);height:auto;max-height:none;margin:28px auto 0;display:block;overflow:hidden;border-radius:18px;border:5px solid rgba(255,250,241,.95);outline:1px solid #b99367;background:#efe2d0;box-shadow:0 10px 30px rgba(86,55,34,.17)}
+.story-photo img,.story-photo.story-small img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center;transform:none!important}
+.inner,.paper{box-sizing:border-box;margin-left:auto;margin-right:auto}
+/* The gallery adapts to every original image aspect ratio, without empty side bands. */
+.gallery-window{box-sizing:border-box;width:100%;max-width:430px;margin:24px auto 0;overflow:hidden;border-radius:18px;background:transparent;border:0;box-shadow:none}
+.gallery{display:flex;align-items:center;transition:transform .5s ease}
+.photo{box-sizing:border-box;min-width:100%;width:100%;height:auto;aspect-ratio:auto;display:flex;align-items:center;justify-content:center;padding:0 3px}
+.photo img{display:block;width:auto;max-width:100%;height:auto;max-height:67svh;object-fit:contain;object-position:center;border:5px solid #fff9ed;border-radius:15px;box-shadow:0 0 0 1px #b99367,0 8px 25px rgba(88,58,38,.17);margin:auto}
+.controls{justify-content:center}
+.arrow{background:#f8eedf;border:1px solid #aa8158;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+@media(max-height:700px){.portrait-hero{padding-top:52px}.portrait-frame{height:min(54svh,540px)}.portrait-copy .hero-name{font-size:clamp(60px,17vw,90px)}}
 
 </style>
 </head>
@@ -354,7 +354,7 @@ body.locked{overflow-y:auto!important}
 
 
 <section class="screen bg-photo bg5 decorated">
- <div class="inner paper"><h2 class="title reveal">ТОЙГО КЕЛЕСИЗБИ?</h2><p class="copy reveal">Сураныч, жообуңузду калтырыңыз.</p><form id="form" class="reveal"><input class="field" placeholder="Аты-жөнүңүз" required><select class="field" required><option value="">Коноктордун саны</option><option>1 адам</option><option>2 адам</option><option>3 адам</option></select><select class="field" required><option value="">Тойго келесизби?</option><option>Ооба, сөзсүз келем</option><option>Тилекке каршы, келе албайм</option></select><button class="submit">ЖӨНӨТҮҮ</button><div class="success" id="success">WhatsApp ачылат. Жообуңузду жөнөтүү үчүн «Жөнөтүү» баскычын басыңыз.</div></form></div>
+ <div class="inner paper"><h2 class="title reveal">ТОЙГО КЕЛЕСИЗБИ?</h2><p class="copy reveal">Сураныч, жообуңузду калтырыңыз.</p><form id="form" class="reveal"><input class="field" placeholder="Аты-жөнүңүз" required><select class="field" required><option value="">Коноктордун саны</option><option>1 адам</option><option>2 адам</option><option>3 адам</option></select><select class="field" required><option value="">Тойго келесизби?</option><option>Ооба, сөзсүз келем</option><option>Тилекке каршы, келе албайм</option></select><button class="submit">ЖӨНӨТҮҮ</button><div class="success" id="success">Жообуңуз жөнөтүлдү! Рахмат! 🤍</div></form></div>
 </section>
 
 
@@ -364,6 +364,8 @@ body.locked{overflow-y:auto!important}
 
 
 <script>
+if('scrollRestoration' in history) history.scrollRestoration='manual';
+
 /* insert reusable edge ornaments */
 document.querySelectorAll(".decorated").forEach(s=>{
  let t=document.getElementById("ornTop").content.cloneNode(true);s.prepend(t);
@@ -402,27 +404,12 @@ musicToggle.addEventListener('click',()=>{
   else startMusic();
 });
 function syncMusicVisibility(){
-  if(document.visibilityState==='hidden'){bgMusic.pause();return}
-  if(opened && musicWanted)bgMusic.play().catch(()=>{bgMusic.pause();musicWanted=false;updateMusicButton()});
+  if(document.visibilityState==='hidden'){bgMusic.pause();musicWanted=false;updateMusicButton();}
 }
 document.addEventListener('visibilitychange',syncMusicVisibility);
-window.addEventListener('pagehide',()=>bgMusic.pause());
-window.addEventListener('pageshow',syncMusicVisibility);
-function openInvitation(){
- if(opened)return;
- opened=true;
- // Unlock scrolling immediately, not after animation timers (which Safari may suspend).
- document.body.classList.remove('locked');
- document.documentElement.style.overflowY='auto';
- document.body.style.overflowY='auto';
- musicToggle.classList.add('visible');startMusic();
- intro.classList.add('opening');
- setTimeout(()=>intro.classList.add('zoom'),420);
- setTimeout(()=>intro.classList.add('flashing'),1400);
- setTimeout(()=>{intro.classList.add('done');document.getElementById('portraitHero').classList.add('started')},1950);
- // Fallback if Safari restores a cached page or delays animation.
- setTimeout(()=>{document.body.classList.remove('locked');intro.classList.add('done');document.getElementById('portraitHero').classList.add('started')},2600);
-}
+window.addEventListener('pagehide',()=>{bgMusic.pause();musicWanted=false;updateMusicButton();});
+
+function openInvitation(){if(opened)return;opened=true;musicToggle.classList.add('visible');startMusic();intro.classList.add("opening");setTimeout(()=>intro.classList.add("zoom"),900);setTimeout(()=>intro.classList.add("flashing"),2350);setTimeout(()=>{intro.classList.add("done");document.body.classList.remove("locked");document.getElementById("portraitHero").classList.add("started")},3150)}
 enter.addEventListener("click",e=>{e.preventDefault();openInvitation()});intro.addEventListener("click",()=>{if(!opened)openInvitation()});
 
 
@@ -438,21 +425,37 @@ const gallery=document.getElementById("gallery"),gw=document.getElementById("gal
 function move(){gallery.style.transform=`translateX(-${p*100}%)`;counter.textContent=`${p+1} / ${total}`}
 next.onclick=()=>{p=(p+1)%total;move()};prev.onclick=()=>{p=(p-1+total)%total;move()};
 let sx=0;gw.addEventListener("touchstart",e=>sx=e.changedTouches[0].screenX,{passive:true});gw.addEventListener("touchend",e=>{let d=sx-e.changedTouches[0].screenX;if(Math.abs(d)<45)return;p=d>0?(p+1)%total:(p-1+total)%total;move()},{passive:true});
-// Set the recipient's international WhatsApp number (digits only) before publishing.
-const WHATSAPP_NUMBER = "996771105716";
-form.addEventListener("submit",e=>{
+// RSVP: Google Sheets endpoint. All other site functionality remains unchanged.
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbxvH0_tyCfcq7mze6KlaTSmdOVH_3cXFXhq81Ccvz5FvvRe2IzQyzYKXHNZu-yZkTY/exec";
+const rsvpButton = form.querySelector('button[type="submit"], button.submit');
+form.addEventListener("submit", async e => {
  e.preventDefault();
- const fields=form.querySelectorAll("input,select");
- const name=fields[0].value.trim(), count=fields[1].value, answer=fields[2].value;
- if(!name||!count||!answer)return;
- const message=`Саламатсызбы! Нургулдун кыз узатуусуна жооп:\nАты-жөнү: ${name}\nКоноктор: ${count}\nЖообу: ${answer}`;
- if(!WHATSAPP_NUMBER){alert("WhatsApp номерин кошуу керек. Сайттын ээсине кайрылыңыз.");return;}
- const url=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
- success.style.display="block";
- window.location.href=url;
+ const fields = form.querySelectorAll("input,select");
+ const name = fields[0].value.trim();
+ const count = parseInt(fields[1].value,10);
+ const answer = fields[2].value;
+ if(!name || !answer || ![1,2,3].includes(count))return;
+ const attendance = answer.startsWith('Ооба') ? 'yes' : 'no';
+ const payload = {name,attendance,guests:attendance==='yes'?count:0};
+ rsvpButton.disabled=true;
+ rsvpButton.textContent='ЖӨНӨТҮЛҮҮДӨ...';
+ success.style.display='none';
+ try {
+   // Apps Script's cross-origin redirects do not provide a readable response to GitHub Pages.
+   await fetch(RSVP_ENDPOINT, {method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+   success.textContent='Жообуңуз жөнөтүлдү! Рахмат! 🤍';
+   success.style.display='block';
+   form.reset();
+ } catch(err) {
+   success.textContent='Жөнөтүүдө ката кетти. Интернетти текшерип, кайра аракет кылыңыз.';
+   success.style.display='block';
+ } finally {
+   rsvpButton.disabled=false;
+   rsvpButton.textContent='ЖӨНӨТҮҮ';
+ }
 });
 // Restore the opening sequence on reload and when returning via browser history.
-window.addEventListener('pageshow',event=>{document.body.classList.remove('locked');if(event.persisted){intro.classList.add('done');document.getElementById('portraitHero').classList.add('started');opened=true;}});
+window.addEventListener('pageshow',()=>{bgMusic.pause();musicWanted=false;updateMusicButton();});
 // Replay section reveals on each new visit, rather than keeping a previous visual state.
 window.addEventListener('pagehide',()=>{document.querySelectorAll('.reveal.show').forEach(el=>el.classList.remove('show'))});
 </script>
