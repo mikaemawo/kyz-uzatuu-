@@ -890,7 +890,7 @@ figure.story-photo.reveal.show {transform:translateY(0)}
  <div class="inner paper"><div class="script final-title reveal">Сиздерди<br>күтөбүз!</div><div class="script final-name reveal">Нургул</div><div class="final-date reveal">КЫЗ УЗАТУУ · 22 · 10 · 2026</div><p class="closing-wish reveal">Ак тилегиңиздер менен кубанычыбызды бөлүшүүгө чакырабыз!</p><figure class="story-photo story-small reveal"><img src="card-1.jpg" loading="lazy" alt="Нургул"></figure><div class="closing-flourish reveal"><h3>✧✧  </h3></div></div>
 </section>
 
-
+<audio id="introMusic" src="intro.mp3" preload="auto"></audio>
 <script>
 if('scrollRestoration' in history) history.scrollRestoration='manual';
 
@@ -1014,6 +1014,21 @@ form.addEventListener("submit", async e => {
 window.addEventListener('pageshow',()=>{bgMusic.pause();musicWanted=false;updateMusicButton();});
 // Replay section reveals on each new visit, rather than keeping a previous visual state.
 window.addEventListener('pagehide',()=>{document.querySelectorAll('.reveal.show').forEach(el=>el.classList.remove('show'))});
+ const introMusic = document.getElementById("introMusic");
+
+  window.addEventListener("load", () => {
+
+    introMusic.play().catch(() => {});
+
+  });
+
+  document.getElementById("enter")?.addEventListener("click", () => {
+
+    introMusic.pause();
+
+    introMusic.currentTime = 0;
+
+  });
 </script>
  <div style="
   text-align: center;
