@@ -789,6 +789,21 @@ figure.story-photo.reveal.show {transform:translateY(0)}
 @keyframes hintFloat{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-9px)}}
 @media(prefers-reduced-motion:reduce){.intro-hint{animation:none}}
 </style>
+<style id="compact-section-spacing">
+/* Compact spacing: keep all sections and effects, remove excess empty height. */
+.screen:not(.portrait-hero){min-height:0; height:auto; padding:clamp(48px,8svh,82px) 0;}
+.screen:not(.portrait-hero) .paper{padding-top:18px;padding-bottom:18px;}
+.screen:not(.portrait-hero) .copy{margin-top:18px;margin-bottom:18px;}
+.screen:not(.portrait-hero) .title{margin-bottom:18px;}
+.screen:not(.portrait-hero) .bigdate{margin:18px 0 12px;}
+.screen:not(.portrait-hero) .timer{margin-top:18px;}
+.screen:not(.portrait-hero) .program{margin-top:18px;}
+.screen:not(.portrait-hero) .palette{margin-top:20px;}
+@media(max-width:600px){
+ .screen:not(.portrait-hero){padding:42px 0;}
+ .screen:not(.portrait-hero) .paper{padding-top:12px;padding-bottom:12px;}
+}
+</style>
 </head>
 <body>
 <audio id="backgroundMusic" src="music.mp3" preload="auto" loop playsinline></audio>
